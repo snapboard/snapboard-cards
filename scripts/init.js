@@ -15,7 +15,7 @@ async function create () {
     default: ({ title }) => title.split(' ').join('').toLowerCase(),
   }, {
     type: 'input',
-    name: 'provider',
+    name: 'providers',
   }])
 
   const destPath = path.resolve(__dirname, '../cards', resp.id)
@@ -47,7 +47,7 @@ async function create () {
   const ymlStr = yaml.safeDump({
     id: resp.id,
     title: resp.title,
-    provider: resp.provider,
+    providers: resp.providers.split(' '),
     inputs: {},
   })
   await fs.outputFile(path.resolve(destPath, './snapboard.yml'), ymlStr)

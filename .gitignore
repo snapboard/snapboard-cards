@@ -9,3 +9,6 @@ dist
 
 # Service accounts
 *service-account.json
+
+# Env 
+.env

@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "new": "node ./scripts/init",
+    "deploy": "GOOGLE_APPLICATION_CREDENTIALS=~/.firebase/snapreport/service-account.json node ./scripts/deploy",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -18,11 +19,14 @@
     "@storybook/addon-links": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
+    "dotenv": "^8.0.0",
     "firebase-admin": "^8.2.0",
     "fs-extra": "^8.0.1",
     "inquirer": "^6.4.1",
     "js-yaml": "^3.13.1",
+    "jsonwebtoken": "^8.5.1",
     "lerna": "^3.15.0"
   },
   "dependencies": {}

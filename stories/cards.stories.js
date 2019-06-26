@@ -22,7 +22,7 @@ req.keys().forEach((key) => {
 	storiesOf(`Cards/${folder}`, module)
   	.add(name, () => {
 			const css = require(`../cards/${name}/component/styles.css`).default
-			const testParams = require(`../cards/${name}/component/testParams.js`).default
+			const testParams = require(`../cards/${name}/component/demoParams.js`)
 			const CardContent = mod.default
 			const props = object('Props', testParams || {}) || {}
   		return (

@@ -2,5 +2,8 @@
   "name": "stripe-balance-server",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "stripe": "^7.3.0"
+  }
 }

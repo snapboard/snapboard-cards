@@ -12,4 +12,5 @@ inputs:
     title: Prop
     type: text
 
-provider: stripe
+providers: 
+  - stripe
