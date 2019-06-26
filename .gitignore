@@ -1,0 +1,11 @@
+# package directories
+node_modules
+
+# build directories
+dist
+
+# logs
+*.log
+
+# Service accounts
+*service-account.json
