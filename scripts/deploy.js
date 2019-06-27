@@ -24,7 +24,6 @@ async function deploy (versionBump) {
   const promises = map(dirList, async (dir) => {
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
-    console.log(`Done... ${dir}`)
   })
 
   await Promise.all(promises)
@@ -39,10 +38,11 @@ async function deployCard (id, versionBump) {
   const cardData = card.data()
   if (card && cardData) {
     const latestVersion = cardData.latest && cardData.latest.version
-    const latestVersionData = latestVersion && await db.collection('cards').doc(id).collection('versions').doc(latestVersion).get()
+    const latestVersionData = (latestVersion && await db.collection('cards').doc(id).collection('versions').doc(latestVersion).get()) || {}
+    const { changes, versionBump, ...latestVersionMatch } = (latestVersionData && latestVersionData.data()) || {}
 
     // Don't deploy if no changes!
-    if (latestVersionData && isEqual(latestVersionData.data(), currData)) {
+    if (isEqual(latestVersionMatch, currData)) {
       console.log(`Skipping... ${id}`)
       return null
     }
@@ -51,12 +51,13 @@ async function deployCard (id, versionBump) {
   console.log(`Deploying... ${id}`)
 
   // Update draft
-  await db.collection('cards').doc(id).set({ admin: true })
+  await db.collection('cards').doc(id).set({ admin: true, public: true }, { merge: true })
   await db.collection('cards').doc(id).collection('versions').doc('draft').set(currData)
 
   await  axios.post(`https://us-central1-snapreport.cloudfunctions.net/publishAdmin?token=${getToken()}`, {
     cardId: id,
     versionBump,
+    changes: 'Auto deployment',
   })
 
   console.log(`Done... ${id}`)
@@ -89,7 +90,7 @@ async function getCardData (id) {
     server: {
       code: serverCode,
       dependencies: (serverPkg && serverPkg.dependencies) || {},
-      testParams: serverTestParams,
+      testParams: JSON.stringify(serverTestParams || {}, null, 2),
       auths: reduce(providers, (obj, val) => {
         obj[val] = {}
         return obj
@@ -99,10 +100,10 @@ async function getCardData (id) {
       code: componentCode,
       css: componentCss,
       dependencies: (componentPkg && componentPkg.dependencies) || {},
-      demoParams: componentDemoParams,
+      demoParams: JSON.stringify(componentDemoParams || {}, null, 2),
     },
     safety: true,
-    approved: true,
+    approved: false,
   }
 }
 
