@@ -8,6 +8,7 @@ const map = require('lodash/map')
 const reduce = require('lodash/reduce')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
+const envfile = require('envfile')
 
 require('dotenv').config()
 
@@ -38,7 +39,7 @@ async function deployCard (id, versionBump) {
   const cardData = card.data()
   if (card && cardData) {
     const latestVersion = cardData.latest && cardData.latest.version
-    const latestVersionData = (latestVersion && await db.collection('cards').doc(id).collection('versions').doc(latestVersion).get()) || {}
+    const latestVersionData = (latestVersion && await db.collection('cards').doc(id).collection('versions').doc(latestVersion).get())
     const { changes, versionBump, ...latestVersionMatch } = (latestVersionData && latestVersionData.data()) || {}
 
     // Don't deploy if no changes!
@@ -50,11 +51,16 @@ async function deployCard (id, versionBump) {
 
   console.log(`Deploying... ${id}`)
 
-  // Update draft
-  await db.collection('cards').doc(id).set({ admin: true, public: true }, { merge: true })
-  await db.collection('cards').doc(id).collection('versions').doc('draft').set(currData)
+  // Get env vars
+  const envVars = await fs.readFile(path.resolve(dirPath, id, './server/.env'), 'utf8')
+  const envObj = envfile.parseSync(envVars)
 
-  await  axios.post(`https://us-central1-snapreport.cloudfunctions.net/publishAdmin?token=${getToken()}`, {
+  // Update draft
+  await db.collection('cards').doc(id).set({ admin: true, public: true, workspaceId: 'admin' }, { merge: true })
+  await db.collection('cards').doc(id).collection('versions').doc('draft').set(currData)
+  await db.collection('cards').doc(id).collection('private').doc('env').set(envObj)
+
+  await axios.post(`https://us-central1-snapreport.cloudfunctions.net/publishAdmin?token=${getToken()}`, {
     cardId: id,
     versionBump,
     changes: 'Auto deployment',
@@ -104,6 +110,7 @@ async function getCardData (id) {
     },
     safety: true,
     approved: false,
+    public: true,
   }
 }
 
