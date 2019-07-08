@@ -29,7 +29,7 @@ async function pull () {
     process.exit(1)
   }
 
-  const cardsCollection = await db.collection('cards').where('workspace', '==', 'admin').get()
+  const cardsCollection = await db.collection('cards').where('workspaceId', '==', 'admin').get()
   const cards = toArray(cardsCollection)
 
   const promises = map(cards, pullCard)
@@ -40,74 +40,75 @@ async function pull () {
 }
 
 async function pullCard (card) {
-  console.log('Pulling... ', `${cardData.name} - ${cardId}`)
-
   const cardId = card.id
-  const { component, server, ...cardDetail } = card.data()
+  const cardDraft = await db.collection('cards').doc(cardId).collection('versions').doc('draft').get()
+  const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
-  const cardDir = path.resolve(dirPath, `${cardData.name} - ${cardId}`)
+  const cardDir = path.resolve(dirPath, `${cardDetail.name} - ${cardId}`)
+  console.log('Pulling... ', `${cardDetail.name} - ${cardId}`)
 
   // Generate YAML
-  fs.writeFileSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'snapboard.yml'),
-    yaml.safeDump({ 
-      auths: server.auths, ...cardDetail 
+    yaml.safeDump({
+      id: cardId,
+      auths: server.auths || {}, 
+      ...cardDetail
     })
   )
 
-  await generateServer(server, cardDir)
-  await generateComponent(server, cardDir)
+  await generateServer(server, cardId, cardDetail.version, cardDir)
+  await generateComponent(component, cardId, cardDetail.version, cardDir)
 
   return true
 }
 
-async function generateServer (server, cardDir) {
+async function generateServer (server, cardId, version, cardDir) {
   // Generate server code
   const { dependencies, code, testParams } = server
-  fs.writeJSONSync(
+  fs.outputJSONSync(
     path.resolve(cardDir, 'server/package.json'),
     { 
       name: `server-${cardId}`, 
-      version: cardDetail.version,  
+      version,  
       dependencies,
     },
   )
-
-  fs.writeFileSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'server/index.js'),
-    code,
+    code || '',
   )
 
-  fs.writeJSONSync(
+  fs.outputJSONSync(
     path.resolve(cardDir, 'server/testParams.json'),
-    testParams,
+    testParams || {},
   )
 }
 
-async function genetateComponent (server, cardDir) {
+async function generateComponent (server, cardId, version, cardDir) {
   const { dependencies, code, css, demoParams } = server
-  fs.writeJSONSync(
+  fs.outputJSONSync(
     path.resolve(cardDir, 'server/package.json'),
     { 
       name: `server-${cardId}`, 
-      version: cardDetail.version,  
+      version,  
       dependencies,
     },
   )
 
-  fs.writeFileSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'component/index.js'),
-    code,
+    code || '',
   )
 
-  fs.writeFileSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'component/index.js'),
-    css,
+    css || '',
   )
 
-  fs.writeJSONSync(
+  fs.outputJSONSync(
     path.resolve(cardDir, 'component/demoParams.json'),
-    demoParams,
+    demoParams || {},
   )
 }
 

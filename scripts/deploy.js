@@ -72,7 +72,7 @@ async function deployCard (id, versionBump) {
 async function getCardData (id) {
   const cardPath = path.resolve(dirPath, id)
   const yamlData = await fs.readFile(path.resolve(cardPath, 'snapboard.yml'), 'utf8')
-  const { title, desc = '', categories = [], inputs, providers = [] } = yaml.load(yamlData)
+  const { title, desc = '', categories = [], inputs, providers = [], active } = yaml.load(yamlData)
 
   // Get server data
   const serverCode = await fs.readFile(path.resolve(cardPath, './server/index.js'), 'utf8')
@@ -111,6 +111,7 @@ async function getCardData (id) {
     safety: true,
     approved: false,
     public: true,
+    active,
   }
 }
 
