@@ -5,6 +5,7 @@ function Component ({ inputs = {} }) {
     <div className="App">
       <h1>Hello 👋</h1>
       <h2>{ inputs.test }</h2>
+      
     </div>
   )
 }
