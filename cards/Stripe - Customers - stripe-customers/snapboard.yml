@@ -1,0 +1,15 @@
+id: stripe-customers
+auths:
+  stripe:
+    userId: Jg3bQS3f6HV0Cgixph1813Iqvh63
+    accountId: iZRp77KouiETbgkBOmUs
+    label: acct_17IpH5CYVu0HtKiN
+categories: []
+inputs:
+  fields: []
+safety: true
+approved: false
+desc: ''
+public: true
+name: Stripe - Customers
+lastSave: 1561735628462

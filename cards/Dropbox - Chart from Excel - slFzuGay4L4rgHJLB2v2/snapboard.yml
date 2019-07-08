@@ -1,0 +1,19 @@
+id: slFzuGay4L4rgHJLB2v2
+auths:
+  dropbox:
+    accountId: >-
+      dropbox-dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: 'dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0'
+public: true
+name: Dropbox - Chart from Excel
+lastSave: 1562020296271
+icon: cards/slFzuGay4L4rgHJLB2v2
+categories: []
+inputs:
+  fields:
+    - prop: sharedLinkFile
+      title: Shared File Link
+      key: fae6548b-0563-4855-8310-a0d624811070
+safety: true
+approved: false
+desc: Display a chart with data pulled from an Excel stored on Dropbox.

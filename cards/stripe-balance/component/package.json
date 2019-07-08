@@ -1,8 +1,0 @@
-{
-  "name": "stripe-balance-component",
-  "version": "0.0.1",
-  "main": "index.js",
-  "dependencies": {
-    "@snapboard/ui": "^0.5.0"
-  }
-}

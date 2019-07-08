@@ -1,0 +1,27 @@
+id: zZA2a5GhQ713wEmZBNc2
+auths:
+  googlesheets:
+    label: '106246925041120466290'
+    accountId: googlesheets-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+safety: true
+approved: false
+desc: Display Google Sheets data as a table.
+public: true
+name: Google Sheets - Table
+lastSave: 1562111550846
+icon: cards/zZA2a5GhQ713wEmZBNc2
+categories: []
+inputs:
+  fields:
+    - prop: spreadsheetId
+      title: Sheet ID
+      key: fae6548b-0563-4855-8310-a0d624811070
+    - prop: range
+      title: Range
+      key: 79debdfd-e0cd-4cbf-b4fe-9e6e885e1e8f
+    - prop: titles
+      title: Titles
+      key: 3e25da26-24b7-4be0-a12d-073dcf9c6344
+    - key: 35e1e305-102a-4c7d-8a7d-246762b668d1
+      prop: pageSize
+      title: Page Size

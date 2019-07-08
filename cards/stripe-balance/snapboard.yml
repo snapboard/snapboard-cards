@@ -1,5 +1,0 @@
-id: stripe-balance
-title: Stripe - Balance
-providers:
-  - stripe
-inputs: {}

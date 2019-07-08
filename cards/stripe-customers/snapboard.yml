@@ -1,5 +1,0 @@
-id: stripe-customers
-title: Stripe - Customers
-providers:
-  - stripe
-inputs: {}

@@ -1,0 +1,18 @@
+id: RNytAV6laB4E9RptXsYd
+auths:
+  mailchimp:
+    accountId: mailchimp-29168243-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: 29168243
+safety: true
+approved: false
+desc: Get the total count of subscribers on a Mailchimp list.
+public: true
+name: Mailchimp - Subscribers
+lastSave: 1562572399047
+icon: cards/RNytAV6laB4E9RptXsYd
+categories: []
+inputs:
+  fields:
+    - prop: listId
+      title: List ID
+      key: fae6548b-0563-4855-8310-a0d624811070
