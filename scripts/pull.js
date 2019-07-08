@@ -122,5 +122,5 @@ function toArray (col) {
   col.forEach(record => {
     arr.push(record)
   })
-  return record
+  return arr
 }
