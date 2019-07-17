@@ -28,7 +28,7 @@ async function pull () {
     console.error('Working branch must be clean before pull')
     process.exit(1)
   }
-  await fs.emptyDir(dirPath)
+  // await fs.emptyDir(dirPath)
 
   const cardsCollection = await db.collection('cards')
     .where('workspaceId', '==', 'admin')
@@ -49,10 +49,10 @@ async function pullCard (card) {
   const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
   const cardDir = path.resolve(dirPath, `${cardDetail.name} - ${cardId}`)
-  const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8')
-  const currData = yaml.load(yamlData)
+  const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8').catch(() => null)
+  const currData = yamlData && yaml.load(yamlData)
 
-  if (cardDetail.lastSave === currData.lastSave) {
+  if (currData && cardDetail.lastSave === currData.lastSave) {
     console.log('Skipping... ', `${cardDetail.name} - ${cardId}`)
     return null
   }
