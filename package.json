@@ -16,7 +16,7 @@
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.4",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
@@ -27,15 +27,15 @@
     "dotenv": "^8.0.0",
     "envfile": "^3.0.0",
     "firebase-admin": "^8.2.0",
-    "fs-extra": "^8.0.1",
+    "fs-extra": "^8.1.0",
     "googleapis": "^41.0.1",
-    "inquirer": "^6.4.1",
+    "inquirer": "^6.5.0",
     "jest": "^24.8.0",
     "js-yaml": "^3.13.1",
     "jsonwebtoken": "^8.5.1",
     "lerna": "^3.15.0",
     "moment": "^2.24.0",
-    "simple-git": "^1.118.0"
+    "simple-git": "^1.121.0"
   },
   "dependencies": {}
 }
