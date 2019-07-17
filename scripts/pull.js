@@ -24,10 +24,10 @@ const dirPath = path.resolve(__dirname, '../cards')
 
 async function pull () {
   const status = await git.status()
-  // if (status.files.length) {
-  //   console.error('Working branch must be clean before pull')
-  //   process.exit(1)
-  // }
+  if (status.files.length) {
+    console.error('Working branch must be clean before pull')
+    process.exit(1)
+  }
   await fs.emptyDir(dirPath)
 
   const cardsCollection = await db.collection('cards')
@@ -49,6 +49,14 @@ async function pullCard (card) {
   const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
   const cardDir = path.resolve(dirPath, `${cardDetail.name} - ${cardId}`)
+  const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8')
+  const currData = yaml.load(yamlData)
+
+  if (cardDetail.lastSave === currData.lastSave) {
+    console.log('Skipping... ', `${cardDetail.name} - ${cardId}`)
+    return null
+  }
+
   console.log('Pulling... ', `${cardDetail.name} - ${cardId}`)
 
   // Generate YAML
@@ -56,7 +64,7 @@ async function pullCard (card) {
     path.resolve(cardDir, 'snapboard.yml'),
     yaml.safeDump({
       id: cardId,
-      auths: server.auths, 
+      auths: server.auths || {}, 
       ...cardDetail
     })
   )
