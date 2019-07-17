@@ -4,12 +4,14 @@ auths:
     userId: Jg3bQS3f6HV0Cgixph1813Iqvh63
     accountId: iZRp77KouiETbgkBOmUs
     label: acct_17IpH5CYVu0HtKiN
+provider: stripe
+approved: false
+safety: true
+public: true
 categories: []
+desc: ''
+name: Stripe - Customers
+lastSave: 1562674180816
 inputs:
   fields: []
-safety: true
-approved: false
-desc: ''
-public: true
-name: Stripe - Customers
-lastSave: 1561735628462
+providerId: stripe

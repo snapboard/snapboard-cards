@@ -33,14 +33,24 @@ async function deploy (versionBump) {
   // Only deploy changes - unless deploy all flag
 }
 
-async function deployCard (id, versionBump) {
-  const currData = await getCardData(id)
+async function deployCard (dir, versionBump) {
+  const { id, ...currData } = await getCardData(dir)
   const card = await db.collection('cards').doc(id).get()
   const cardData = card.data()
   if (card && cardData) {
     const latestVersion = cardData.latest && cardData.latest.version
-    const latestVersionData = (latestVersion && await db.collection('cards').doc(id).collection('versions').doc(latestVersion).get())
+    const latestVersionData = (latestVersion && await db.collection('cards').doc(id).collection('versions').doc('draft').get())
     const { changes, versionBump, ...latestVersionMatch } = (latestVersionData && latestVersionData.data()) || {}
+
+    if (latestVersionMatch.lastSave > currData.lastSave) {
+      console.log(`Conflict... ${id}`)
+      return null
+    }
+
+    // Normalize JSON files
+    noramlizeJSON(latestVersionMatch.component, 'demoParams')
+    noramlizeJSON(latestVersionMatch.server, 'testParams')
+    if (!latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
 
     // Don't deploy if no changes!
     if (isEqual(latestVersionMatch, currData)) {
@@ -52,13 +62,13 @@ async function deployCard (id, versionBump) {
   console.log(`Deploying... ${id}`)
 
   // Get env vars
-  const envVars = await fs.readFile(path.resolve(dirPath, id, './server/.env'), 'utf8')
-  const envObj = envfile.parseSync(envVars)
+  const envVars = await fs.readFile(path.resolve(dirPath, id, './server/.env'), 'utf8').catch(() => null)
+  const envObj = envVars && envfile.parseSync(envVars)
 
   // Update draft
   await db.collection('cards').doc(id).set({ admin: true, public: true, workspaceId: 'admin' }, { merge: true })
   await db.collection('cards').doc(id).collection('versions').doc('draft').set(currData)
-  await db.collection('cards').doc(id).collection('private').doc('env').set(envObj)
+  if (envObj) await db.collection('cards').doc(id).collection('private').doc('env').set(envObj)
 
   await axios.post(`https://us-central1-snapreport.cloudfunctions.net/publishAdmin?token=${getToken()}`, {
     cardId: id,
@@ -69,38 +79,30 @@ async function deployCard (id, versionBump) {
   console.log(`Done... ${id}`)
 }
 
-async function getCardData (id) {
-  const cardPath = path.resolve(dirPath, id)
+async function getCardData (dir) {
+  const cardPath = path.resolve(dirPath, dir)
   const yamlData = await fs.readFile(path.resolve(cardPath, 'snapboard.yml'), 'utf8')
-  const { title, desc = '', categories = [], inputs, providers = [], active } = yaml.load(yamlData)
+  const { auths, ...config } = yaml.load(yamlData)
 
   // Get server data
   const serverCode = await fs.readFile(path.resolve(cardPath, './server/index.js'), 'utf8')
   const serverPkg = await fs.readJson(path.resolve(cardPath, './server/package.json'))
-  const serverTestParams = require(path.resolve(cardPath, './server/testParams.js'))
+  const serverTestParams = require(path.resolve(cardPath, './server/testParams.json'))
 
   // Get component data
   const componentCode = await fs.readFile(path.resolve(cardPath, './component/Card.js'), 'utf8')
   const componentCss = await fs.readFile(path.resolve(cardPath, './component/styles.css'), 'utf8')
   const componentPkg = await fs.readJson(path.resolve(cardPath, './component/package.json'))
-  const componentDemoParams = require(path.resolve(cardPath, './component/demoParams.js'))
+  const componentDemoParams = require(path.resolve(cardPath, './component/demoParams.json'))
 
   // Get the required data
   return {
-    name: title,
-    desc,
-    inputs: {
-      fields: map(inputs, ({ title, type }, key) => ({ key, prop: key, title, type }))
-    },
-    categories,
+    ...config,
     server: {
       code: serverCode,
       dependencies: (serverPkg && serverPkg.dependencies) || {},
       testParams: JSON.stringify(serverTestParams || {}, null, 2),
-      auths: reduce(providers, (obj, val) => {
-        obj[val] = {}
-        return obj
-      }, {})
+      auths,
     },
     component: {
       code: componentCode,
@@ -108,15 +110,15 @@ async function getCardData (id) {
       dependencies: (componentPkg && componentPkg.dependencies) || {},
       demoParams: JSON.stringify(componentDemoParams || {}, null, 2),
     },
-    safety: true,
-    approved: false,
-    public: true,
-    active,
   }
 }
 
 function getToken () {
   return jwt.sign({ admin: true }, process.env.JWT_SECRET)
+}
+
+function noramlizeJSON (obj, prop) {
+  return obj[prop] = JSON.stringify(JSON.parse(obj[prop]), null, 2)
 }
 
 if (require.main === module) {

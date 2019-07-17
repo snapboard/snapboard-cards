@@ -1,16 +1,11 @@
 id: zZA2a5GhQ713wEmZBNc2
 auths:
   googlesheets:
-    label: '106246925041120466290'
     accountId: googlesheets-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
-safety: true
-approved: false
+    label: '106246925041120466290'
 desc: Display Google Sheets data as a table.
-public: true
 name: Google Sheets - Table
-lastSave: 1562111550846
-icon: cards/zZA2a5GhQ713wEmZBNc2
-categories: []
+lastSave: 1562672635552
 inputs:
   fields:
     - prop: spreadsheetId
@@ -22,6 +17,12 @@ inputs:
     - prop: titles
       title: Titles
       key: 3e25da26-24b7-4be0-a12d-073dcf9c6344
-    - key: 35e1e305-102a-4c7d-8a7d-246762b668d1
-      prop: pageSize
+    - prop: pageSize
       title: Page Size
+      key: 35e1e305-102a-4c7d-8a7d-246762b668d1
+provider: googlesheets
+approved: false
+safety: true
+public: true
+icon: cards/zZA2a5GhQ713wEmZBNc2
+categories: []

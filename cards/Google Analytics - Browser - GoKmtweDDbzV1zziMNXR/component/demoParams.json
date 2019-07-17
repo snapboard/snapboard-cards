@@ -1,1 +1,24 @@
-"{\n  \"data\": [\n    {\n      \"label\": \"Chrome\",\n      \"value\": 26186\n    },\n    {\n      \"label\": \"Safari\",\n      \"value\": 5469\n    },\n    {\n      \"label\": \"Firefox\",\n      \"value\": 1536\n    },\n    {\n      \"label\": \"Safari (in-app)\",\n      \"value\": 1027\n    },\n    {\n      \"label\": \"YaBrowser\",\n      \"value\": 518\n    }\n  ]\n}"
+{
+  "data": [
+    {
+      "label": "Chrome",
+      "value": 26186
+    },
+    {
+      "label": "Safari",
+      "value": 5469
+    },
+    {
+      "label": "Firefox",
+      "value": 1536
+    },
+    {
+      "label": "Safari (in-app)",
+      "value": 1027
+    },
+    {
+      "label": "YaBrowser",
+      "value": 518
+    }
+  ]
+}

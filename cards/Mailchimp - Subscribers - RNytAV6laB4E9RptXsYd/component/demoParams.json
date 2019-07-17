@@ -1,1 +1,23 @@
-"{\n  \"data\": {\n    \"name\": \"1 Product a Week\",\n    \"stats\": {\n      \"member_count\": 2,\n      \"unsubscribe_count\": 0,\n      \"cleaned_count\": 0,\n      \"member_count_since_send\": 4,\n      \"unsubscribe_count_since_send\": 0,\n      \"cleaned_count_since_send\": 0,\n      \"campaign_count\": 0,\n      \"campaign_last_sent\": \"\",\n      \"merge_field_count\": 2,\n      \"avg_sub_rate\": 0,\n      \"avg_unsub_rate\": 0,\n      \"target_sub_rate\": 0,\n      \"open_rate\": 0,\n      \"click_rate\": 0,\n      \"last_sub_date\": \"2019-06-04T23:35:50+00:00\",\n      \"last_unsub_date\": \"\"\n    }\n  }\n}"
+{
+  "data": {
+    "name": "1 Product a Week",
+    "stats": {
+      "member_count": 2,
+      "unsubscribe_count": 0,
+      "cleaned_count": 0,
+      "member_count_since_send": 4,
+      "unsubscribe_count_since_send": 0,
+      "cleaned_count_since_send": 0,
+      "campaign_count": 0,
+      "campaign_last_sent": "",
+      "merge_field_count": 2,
+      "avg_sub_rate": 0,
+      "avg_unsub_rate": 0,
+      "target_sub_rate": 0,
+      "open_rate": 0,
+      "click_rate": 0,
+      "last_sub_date": "2019-06-04T23:35:50+00:00",
+      "last_unsub_date": ""
+    }
+  }
+}

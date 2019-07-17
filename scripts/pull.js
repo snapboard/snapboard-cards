@@ -24,12 +24,16 @@ const dirPath = path.resolve(__dirname, '../cards')
 
 async function pull () {
   const status = await git.status()
-  if (status.files.length) {
-    console.error('Working branch must be clean before pull')
-    process.exit(1)
-  }
+  // if (status.files.length) {
+  //   console.error('Working branch must be clean before pull')
+  //   process.exit(1)
+  // }
+  await fs.emptyDir(dirPath)
 
-  const cardsCollection = await db.collection('cards').where('workspaceId', '==', 'admin').get()
+  const cardsCollection = await db.collection('cards')
+    .where('workspaceId', '==', 'admin')
+    .where('active', '==', true)
+    .get()
   const cards = toArray(cardsCollection)
 
   const promises = map(cards, pullCard)
@@ -52,7 +56,7 @@ async function pullCard (card) {
     path.resolve(cardDir, 'snapboard.yml'),
     yaml.safeDump({
       id: cardId,
-      auths: server.auths || {}, 
+      auths: server.auths, 
       ...cardDetail
     })
   )
@@ -63,7 +67,7 @@ async function pullCard (card) {
   return true
 }
 
-async function generateServer (server, cardId, version, cardDir) {
+async function generateServer (server, cardId, version = '0.0.0', cardDir) {
   // Generate server code
   const { dependencies, code, testParams } = server
   fs.outputJSONSync(
@@ -79,34 +83,34 @@ async function generateServer (server, cardId, version, cardDir) {
     code || '',
   )
 
-  fs.outputJSONSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'server/testParams.json'),
     testParams || {},
   )
 }
 
-async function generateComponent (server, cardId, version, cardDir) {
+async function generateComponent (server, cardId, version = '0.0.0', cardDir) {
   const { dependencies, code, css, demoParams } = server
   fs.outputJSONSync(
-    path.resolve(cardDir, 'server/package.json'),
+    path.resolve(cardDir, 'component/package.json'),
     { 
-      name: `server-${cardId}`, 
+      name: `component-${cardId}`, 
       version,  
       dependencies,
     },
   )
 
   fs.outputFileSync(
-    path.resolve(cardDir, 'component/index.js'),
+    path.resolve(cardDir, 'component/Card.js'),
     code || '',
   )
 
   fs.outputFileSync(
-    path.resolve(cardDir, 'component/index.js'),
+    path.resolve(cardDir, 'component/styles.css'),
     css || '',
   )
 
-  fs.outputJSONSync(
+  fs.outputFileSync(
     path.resolve(cardDir, 'component/demoParams.json'),
     demoParams || {},
   )

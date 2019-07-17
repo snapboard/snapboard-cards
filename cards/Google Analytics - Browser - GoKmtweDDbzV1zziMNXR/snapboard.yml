@@ -1,18 +1,39 @@
 id: GoKmtweDDbzV1zziMNXR
 auths:
   googleanalytics:
-    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
-safety: true
-approved: false
-desc: All time browser usage from Google Analytics.
+    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
 public: true
-name: Google Analytics - Browser
-lastSave: 1562145326748
 icon: cards/GoKmtweDDbzV1zziMNXR
 categories: []
+desc: All time browser usage from Google Analytics.
+name: Google Analytics - Browser
+lastSave: 1563318931964
 inputs:
   fields:
-    - key: fae6548b-0563-4855-8310-a0d624811070
+    - title: View ID
+      key: fae6548b-0563-4855-8310-a0d624811070
       prop: viewId
-      title: View ID
+      type: text
+      required: true
+      caption: >-
+        You can [find the view  ID in the accounts section on Google
+        Analytics](https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics)
+    - options:
+        selectOptions: 'Today, Week, Month, Year, Last 7 Days, Last 28 Days, Last 90 Days'
+      prop: period
+      type: select
+      caption: The period of time to report on
+      title: Period
+      key: eb9ea29d-2f9d-484e-9ab3-a861fb28f337
+    - type: select
+      caption: Type of value to track
+      title: Metric
+      key: 05033704-6a42-4791-a497-dbbc811474d8
+      options:
+        selectOptions: 'Users, New Users, Sessions'
+      prop: metric
+providerId: googleanalytics
+provider: googleanalytics
+approved: false
+safety: true

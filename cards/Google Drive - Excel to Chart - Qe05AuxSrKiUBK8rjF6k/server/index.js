@@ -1,5 +1,5 @@
 import { google } from 'googleapis'
-import Excel from 'exceljs/modern.nodejs'
+import excelToJson from 'convert-excel-to-json'
 
 const OAuth2 = google.auth.OAuth2
 
@@ -18,30 +18,71 @@ export default async ({ auths, inputs }) => {
 
 	const fileId = inputs.fileId
 	const res = await drive.files.get(
-      {fileId, alt: 'media'},
-      {responseType: 'arraybuffer'}
-    )
+    {fileId, alt: 'media'},
+    {responseType: 'arraybuffer'}
+  )
+    
+	return convertData(inputs.range, toBuffer(res.data), inputs.invert)
+}
 
-	const workbook = new Excel.Workbook();
-    await workbook.xlsx.load(res.data)
+function toBuffer(ab) {
+  var buf = Buffer.alloc(ab.byteLength);
+  var view = new Uint8Array(ab);
+  for (var i = 0; i < buf.length; ++i) {
+      buf[i] = view[i];
+  }
+  return buf;
+}
 
-    const worksheet = workbook.getWorksheet(1)
-    const labels = worksheet.getRow(1).values.slice(2)
-    const datasets = []
+function convertData (range = '', source, shouldInvert) {
+	const split = range.split('!')
+	const sheets = split.length > 1 ? [split[0]] : undefined
+	const cellRange = split.pop()
 
-    worksheet.eachRow((row, rowNumber) => {
-        if (rowNumber === 1) return
-        const cells = row.values
-        datasets.push({
-            label: cells[1],
-            data: cells.slice(2),
-        })
-    })
+	const result = excelToJson({
+    source,
+    range: cellRange,
+    sheets,
+	})
 
-    return {
-        labels,
-        datasets
-    }
+	const sheetData = result[Object.keys(result)[0]]
 
-	return res.data
+	const titleRow = Object.keys(sheetData[0]).map((key) => {
+		return sheetData[0][key]
+	})
+
+	const titleCol = []
+	const data = []
+	sheetData.slice(1).forEach((row) => {
+		const rowKeys = Object.keys(row)
+		titleCol.push(row[rowKeys[0]])
+		data.push(rowKeys.slice(1).map((key) => row[key]))
+	})
+
+	if (shouldInvert) {
+		const inverted = invert(data)
+		return {
+			labels: titleCol,
+			datasets: titleRow.map((label, i) => ({
+				label,
+				data: inverted[i] 
+			}))
+		}
+	}
+
+	return {
+		labels: titleRow,
+		datasets: titleCol.map((label, i) => ({
+			label,
+			data: data[i] 
+		}))
+	}
+}
+
+function invert (data) {
+	return data[0].map((_, i) => {
+		return data.map((_, y) => {
+			return data[y][i]
+		})
+	})
 }

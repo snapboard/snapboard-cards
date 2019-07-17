@@ -1,1 +1,1 @@
-{"name":"server-stripe-customers","dependencies":{"react":"16.8.6","@snapboard/ui":"0.6.0","react-dom":"16.8.6"}}
+{"name":"server-stripe-customers","version":"0.0.0","dependencies":{"stripe":"7.4.0"}}

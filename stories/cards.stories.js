@@ -15,14 +15,17 @@ const Card = styled.div`
 
 const req = require.context('../cards', true, /component\/Card\.js$/);
 
+console.log(req)
+
 req.keys().forEach((key) => {
+	console.log(key)
 	const name = key.substr(2).split('/')[0]
 	const folder = name.split('-')[0]
 	const mod = require(`../cards/${key.substr(2)}`)
 	storiesOf(`Cards/${folder}`, module)
   	.add(name, () => {
 			const css = require(`../cards/${name}/component/styles.css`).default
-			const testParams = require(`../cards/${name}/component/demoParams.js`)
+			const testParams = require(`../cards/${name}/component/demoParams.json`)
 			const CardContent = mod.default
 			const props = object('Props', testParams || {}) || {}
   		return (
