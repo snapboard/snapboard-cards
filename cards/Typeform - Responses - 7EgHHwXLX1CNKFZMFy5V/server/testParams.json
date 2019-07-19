@@ -1,5 +1,6 @@
 {
   "inputs": {
-    "formId": "viywLg"
+    "formId": "viywLg",
+    "submitOnly": true
   }
 }

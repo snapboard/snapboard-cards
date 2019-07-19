@@ -2,15 +2,10 @@ import React from 'react'
 import BigNumber from '@snapboard/ui/BigNumber'
 
 function Component ({ data }) {
-  if (!data) return null
+  if (data === null) return null
   
   return (
-    <BigNumber data={{ 
-      datasets: [{ 
-        label: 'Responses', 
-        data: data
-      }] 
-    }} />
+    <BigNumber number={data} label='Responses' />
   )
 }
 

@@ -3,7 +3,9 @@ import Shopify from 'shopify-api-node'
 export default async ({ 
   auths, inputs, previous, time, 
 }) => {
-  const shop = auths.shopify.profile.domain.replace('.myshopify.com', '')
+  const shop = auths.shopify.profile.myshopify_domain.replace('.myshopify.com', '')
+  console.log(auths.shopify.profile)
+
   const shopify = new Shopify({
     shopName: shop,
     accessToken: auths.shopify.accessToken,

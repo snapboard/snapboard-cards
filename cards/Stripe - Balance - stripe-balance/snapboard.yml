@@ -1,12 +1,11 @@
 id: stripe-balance
 auths:
   stripe:
-    accountId: iZRp77KouiETbgkBOmUs
+    accountId: stripe-acct_17IpH5CYVu0HtKiN-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: acct_17IpH5CYVu0HtKiN
-    userId: Jg3bQS3f6HV0Cgixph1813Iqvh63
 desc: ''
 name: Stripe - Balance
-lastSave: 1562674173495
+lastSave: 1563367061069
 inputs:
   fields: []
 providerId: stripe

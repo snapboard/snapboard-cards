@@ -1,0 +1,16 @@
+id: OohNsicHznAviCAuFnJh
+auths:
+  stripe:
+    accountId: stripe-acct_1Br3zBF8mByq8nY6-EtkRntjcPGVs0O54buTdXDOs2dD2
+    label: acct_1Br3zBF8mByq8nY6
+desc: The monthly reoccurring revenue for Stripe.
+name: Stripe - MRR
+lastSave: 1563447574465
+inputs:
+  fields: []
+providerId: stripe
+provider: stripe
+approved: false
+safety: true
+public: true
+categories: []

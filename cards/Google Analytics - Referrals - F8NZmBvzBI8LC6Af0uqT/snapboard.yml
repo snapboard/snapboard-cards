@@ -1,35 +1,36 @@
 id: F8NZmBvzBI8LC6Af0uqT
 auths:
   googleanalytics:
-    label: '106246925041120466290'
     accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
-desc: A list of the top referring sites.
+    label: '106246925041120466290'
 name: Google Analytics - Referrals
-lastSave: 1563320297235
+lastSave: 1563485014401
 inputs:
   fields:
-    - title: View ID
-      key: fae6548b-0563-4855-8310-a0d624811070
-      prop: viewId
-      type: text
+    - type: provider
       required: true
-      caption: >-
-        You can [find the view  ID in the accounts section on Google
-        Analytics](https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics)
-    - type: select
-      caption: The period of time to report on
-      title: Period
+      caption: ''
+      title: View
+      key: fae6548b-0563-4855-8310-a0d624811070
+      options:
+        lookup:
+          providerId: googleanalytics
+          lookupId: accounts
+      prop: viewId
+    - title: Period
       key: eb9ea29d-2f9d-484e-9ab3-a861fb28f337
       options:
         selectOptions: 'Today, Week, Month, Year, Last 7 Days, Last 28 Days, Last 90 Days'
       prop: period
-    - type: select
+      type: select
+      caption: The period of time to report on
+    - prop: metric
+      type: select
       caption: The type of value to track
       title: Metric
       key: bb3a6aeb-3fed-419b-89fb-ef745d17a9e4
       options:
         selectOptions: 'Users, New Users, Sessions'
-      prop: metric
 providerId: googleanalytics
 provider: googleanalytics
 approved: false
@@ -37,3 +38,4 @@ safety: true
 public: true
 icon: cards/GoKmtweDDbzV1zziMNXR
 categories: []
+desc: A list of the top referring sites.
