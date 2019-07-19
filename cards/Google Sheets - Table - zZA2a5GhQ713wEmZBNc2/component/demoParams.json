@@ -5,6 +5,13 @@
   },
   "data": [
     [
+      "Name",
+      "Gender",
+      "Class",
+      "State",
+      "Language"
+    ],
+    [
       "Alexandra",
       "Female",
       "4. Senior",

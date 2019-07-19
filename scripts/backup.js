@@ -19,7 +19,7 @@ async function backup () {
 
   const timestamp = moment().format('YYYY-MM-DD-HH-MM-ss')
   const body = {
-    outputUriPrefix: `gs://snapreport.appspot.com/backups/${timestamp}`
+    outputUriPrefix: `gs://snapboard-backups/${timestamp}`
   }
   const response = await axios.post(url, body, { headers })
   return response

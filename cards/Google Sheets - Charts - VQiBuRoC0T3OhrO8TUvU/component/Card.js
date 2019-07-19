@@ -6,12 +6,9 @@ function Component ({
   data = {},
   update,
 }) {
-  const { followers_count, screen_name } = data
+  const { value = 0, label = '' } = data
   return (
-    <BigNumber 
-      number={followers_count} 
-      label={`@${screen_name}`} 
-    />
+    <BigNumber number={value} label={label} />
   )
 }
 
