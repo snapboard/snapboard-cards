@@ -23,11 +23,11 @@ const git = simpleGit(path.resolve(__dirname, '../'))
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function pull () {
-  const status = await git.status()
-  if (status.files.length) {
-    console.error('Working branch must be clean before pull')
-    process.exit(1)
-  }
+  // const status = await git.status()
+  // if (status.files.length) {
+  //   console.error('Working branch must be clean before pull')
+  //   process.exit(1)
+  // }
   // await fs.emptyDir(dirPath)
 
   const cardsCollection = await db.collection('cards')
@@ -48,7 +48,8 @@ async function pullCard (card) {
   const cardDraft = await db.collection('cards').doc(cardId).collection('versions').doc('draft').get()
   const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
-  const cardDir = path.resolve(dirPath, `${cardDetail.name} - ${cardId}`)
+  const dir = `${cardDetail.name.toLowerCase().replace(/[()]/g, '').replace(/(\s+-\s+|\s+)/g, '-')}`
+  const cardDir = path.resolve(dirPath, dir)
   const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8').catch(() => null)
   const currData = yamlData && yaml.load(yamlData)
 
