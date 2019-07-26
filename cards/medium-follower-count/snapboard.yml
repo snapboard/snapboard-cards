@@ -1,26 +1,21 @@
-id: 2S121X5izbgh9m5RPdoC
-auths:
-  medium:
-    label: calum.moore
-    accountId: >-
-      medium-1699eb669dadcb12e65d4dc0671eca31a84eccb6fc8dcf0ca64a2b057540f54ed-Jg3bQS3f6HV0Cgixph1813Iqvh63
-provider: googlesheets
-approved: false
-safety: true
+id: 79RxHdiltrzt9GnNQLRb
+auths: {}
 public: true
-icon: cards/zZA2a5GhQ713wEmZBNc2
-categories: []
-desc: Display the total number of subscribers to your YouTube channel.
 name: Medium - Follower Count
-lastSave: 1564135925070
+lastSave: 1564163189847
+providerId: medium
 inputs:
   fields:
-    - title: Channel ID
-      key: 7d94d5cc-134e-4241-af55-fd7b3e60a301
-      prop: channelId
+    - title: Username
+      key: f07dd18d-21ee-4945-91ff-5a5356014c5f
+      prop: username
       type: text
       required: true
-      caption: >-
-        The channel ID can be found in the youtube.com URL
-        https://www.youtube.com/channel/<channelId>
-providerId: medium
+      caption: Your medium username (not including the @)
+    - caption: If the username is a publication
+      prop: isPublication
+      title: Is Publication?
+      key: a61a53ba-2034-403e-85e9-4324ae58f4d4
+      type: bool
+safety: true
+desc: Gets the total number of followers on Medium.

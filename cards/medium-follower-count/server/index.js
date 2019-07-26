@@ -1,22 +1,22 @@
-import { google } from 'googleapis'
+import axios from 'axios'
+import get from 'lodash.get'
 
-const OAuth2 = google.auth.OAuth2
+const JSON_HIJACKING_PREFIX = '])}while(1);</x>';
 
-export default async ({ auths, inputs }) => {
-	const { accessToken } = auths.youtube
-	const oauth2Client = new OAuth2()
-	oauth2Client.setCredentials({
-		access_token: accessToken,
-	})
-
-	const youtube = google.youtube({
-		version: 'v3',
-		auth: oauth2Client,
-	})
-
-	const res = await youtube.channels.list({
-    part: 'snippet,statistics',
-		id: inputs.channelId,
+export default async ({ inputs = {} }) => {
+  const res = await axios.request({
+    url: `https://medium.com/${inputs.isPublication ? '' : '@'}${inputs.username}?format=json`,
+    method: 'GET',
+    transformResponse: massageHijackedPreventionResponse,
+  }).catch((err) => {
+    if (err.response.status === 404) throw new Error('Unable to find username')
+    throw err
   })
-	return res.data.items[0]
+  if (inputs.isPublication) return get(res.data, 'payload.collection.metadata.followerCount')
+  const userId = get(res.data, 'payload.user.userId')
+  return get(res.data, `payload.references.SocialStats.${userId}.usersFollowedByCount`, 0)
+}
+
+function massageHijackedPreventionResponse (response) {
+  return JSON.parse(response.replace(JSON_HIJACKING_PREFIX, ''));
 }

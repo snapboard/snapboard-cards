@@ -14,16 +14,16 @@ inputs:
         https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit from the URL
       title: Sheet ID
       key: fae6548b-0563-4855-8310-a0d624811070
-    - caption: The single cell range to select in the format *A1* or *Sheet1!A1*
-      title: Range
+    - title: Range
       key: 79debdfd-e0cd-4cbf-b4fe-9e6e885e1e8f
       prop: range
       type: text
       required: true
-    - prop: labelRange
+      caption: The single cell range to select in the format *A1* or *Sheet1!A1*
+    - caption: The single cell range to select in the format *A1* or *Sheet1!A1*
+      prop: labelRange
       title: Label Range
       key: 3e25da26-24b7-4be0-a12d-073dcf9c6344
-      caption: The single cell range to select in the format *A1* or *Sheet1!A1*
 providerId: googlesheets
 provider: googlesheets
 approved: false

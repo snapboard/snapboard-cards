@@ -1,38 +1,3 @@
 {
-  "data": {
-    "snippet": {
-      "title": "1 Product a Week",
-      "description": "https://arianagrande.lnk.to/tun-album",
-      "customUrl": "osnapitzari",
-      "publishedAt": "2007-01-22T01:53:12.000Z",
-      "thumbnails": {
-        "default": {
-          "url": "https://yt3.ggpht.com/a/AGF-l7-lV1E-93ZFAKjZv4B48fb_BArHVPCPGHlLIA=s88-c-k-c0xffffffff-no-rj-mo",
-          "width": 88,
-          "height": 88
-        },
-        "medium": {
-          "url": "https://yt3.ggpht.com/a/AGF-l7-lV1E-93ZFAKjZv4B48fb_BArHVPCPGHlLIA=s240-c-k-c0xffffffff-no-rj-mo",
-          "width": 240,
-          "height": 240
-        },
-        "high": {
-          "url": "https://yt3.ggpht.com/a/AGF-l7-lV1E-93ZFAKjZv4B48fb_BArHVPCPGHlLIA=s800-c-k-c0xffffffff-no-rj-mo",
-          "width": 800,
-          "height": 800
-        }
-      },
-      "localized": {
-        "title": "1 Product a Week",
-        "description": "https://arianagrande.lnk.to/tun-album"
-      }
-    },
-    "statistics": {
-      "viewCount": "853362035",
-      "commentCount": "0",
-      "subscriberCount": "3678",
-      "hiddenSubscriberCount": false,
-      "videoCount": "128"
-    }
-  }
+  "data": 200
 }

@@ -3,17 +3,6 @@ auths:
   firebase:
     accountId: firebase-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
-provider: googlesheets
-approved: false
-safety: true
-public: true
-icon: cards/zZA2a5GhQ713wEmZBNc2
-categories: []
-desc: >-
-  Counts the total number of records in a given collection. **NOTE: this will
-  read every record in the collection to get the total count.**
-name: Firestore - Total Records in Collection
-lastSave: 1564016301713
 inputs:
   fields:
     - title: Project
@@ -25,10 +14,21 @@ inputs:
       prop: projectId
       type: provider
       required: true
-    - title: Collection
-      key: 59bf9c55-d22b-4e21-972f-d07efac75680
-      prop: collection
+    - prop: collection
       type: text
       required: true
       caption: The collection name/id
+      title: Collection
+      key: 59bf9c55-d22b-4e21-972f-d07efac75680
 providerId: firebase
+provider: googlesheets
+approved: false
+safety: true
+public: true
+icon: cards/zZA2a5GhQ713wEmZBNc2
+categories: []
+desc: >-
+  Counts the total number of records in a given collection. **NOTE: this will
+  read every record in the collection to get the total count.**
+name: Firestore - Total Records in Collection
+lastSave: 1564016301713

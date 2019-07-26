@@ -1,17 +1,20 @@
 id: KrzyBM3rGYAERSCriEhh
 auths: {}
+desc: Display a list of entries from a HTTPS request.
+public: true
+name: HTTPS - List
 lastSave: 1563545153263
 providerId: https
 inputs:
   fields:
-    - key: 215e144c-42e2-4719-8c89-c1688a5acb8b
+    - title: URL
+      key: 215e144c-42e2-4719-8c89-c1688a5acb8b
       prop: url
       type: text
       required: true
       caption: >-
         The full URL path of the resource - e.g. https://example.com/path - must
         return JSON response
-      title: URL
     - prop: path
       type: text
       required: false
@@ -20,21 +23,21 @@ inputs:
         of objects 
       title: List - Key Path
       key: da3c27fc-bd66-4074-80d1-671872cf0dc9
-    - prop: titleProp
+    - caption: >-
+        The title property (e.g. `title` if array is formatted array `[{ title: 
+        "Hello" }]`)
+      prop: titleProp
       title: List Item - Title
       key: 17023055-a92b-4466-a32d-f56000735a15
       type: text
-      caption: >-
-        The title property (e.g. `title` if array is formatted array `[{ title: 
-        "Hello" }]`)
-    - title: List Item - Desc
-      key: 05ca1593-9bca-4e93-9d2d-de9f62b485b6
-      prop: descProp
+    - prop: descProp
       type: text
       required: false
       caption: >-
         The desc property (e.g. `desc` if array is formatted array `[{ desc: 
         "World" }]`)
+      title: List Item - Desc
+      key: 05ca1593-9bca-4e93-9d2d-de9f62b485b6
     - type: text
       caption: >-
         A link property that will be opened if the user clicks on the item (e.g.
@@ -50,6 +53,3 @@ inputs:
       prop: method
       type: select
 safety: true
-desc: Display a list of entries from a HTTPS request.
-public: true
-name: HTTPS - List

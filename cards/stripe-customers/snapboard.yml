@@ -3,10 +3,6 @@ auths:
   stripe:
     accountId: stripe-acct_1Br3zBF8mByq8nY6-EtkRntjcPGVs0O54buTdXDOs2dD2
     label: acct_1Br3zBF8mByq8nY6
-provider: stripe
-approved: false
-safety: true
-public: true
 categories: []
 desc: ''
 name: Stripe - Customers
@@ -14,3 +10,7 @@ lastSave: 1563447266593
 inputs:
   fields: []
 providerId: stripe
+provider: stripe
+approved: false
+safety: true
+public: true

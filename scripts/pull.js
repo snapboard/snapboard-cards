@@ -48,7 +48,7 @@ async function pullCard (card) {
   const cardDraft = await db.collection('cards').doc(cardId).collection('versions').doc('draft').get()
   const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
-  const dir = `${cardDetail.name.toLowerCase().replace(/[()]/g, '').replace(/(\s+-\s+|\s+)/g, '-')}`
+  const dir = `${cardDetail.name.toLowerCase().replace(/[()]/g, '').replace(/(\s+-\s+|\s+|\/)/g, '-')}`
   const cardDir = path.resolve(dirPath, dir)
   const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8').catch(() => null)
   const currData = yamlData && yaml.load(yamlData)

@@ -4,9 +4,6 @@ auths:
     accountId: >-
       dropbox-dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: 'dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0'
-approved: false
-safety: true
-public: true
 icon: cards/slFzuGay4L4rgHJLB2v2
 categories: []
 desc: Display a chart with data pulled from an Excel stored on Dropbox.
@@ -14,27 +11,27 @@ name: Dropbox - Chart from Excel (using public link)
 lastSave: 1563292767817
 inputs:
   fields:
-    - options:
+    - caption: >-
+        You need to [create a shared
+        link](https://help.dropbox.com/files-folders/share/view-only-access) at
+        dropbox.com
+      title: Shared File Link
+      key: fae6548b-0563-4855-8310-a0d624811070
+      options:
         lookup:
           providerId: dropbox
           lookupId: search
       prop: sharedLinkFile
       type: text
       required: true
-      caption: >-
-        You need to [create a shared
-        link](https://help.dropbox.com/files-folders/share/view-only-access) at
-        dropbox.com
-      title: Shared File Link
-      key: fae6548b-0563-4855-8310-a0d624811070
-    - type: text
+    - prop: range
+      type: text
       required: false
       caption: >-
         Range of cells in excel format (should include labels) - e.g.
         Sheet1!A1:H4
       title: Range
       key: 95c6a6e2-998e-45da-acd9-5e255b24528c
-      prop: range
     - type: bool
       caption: Invert the labels from row to column
       prop: invert
@@ -49,3 +46,6 @@ inputs:
       prop: type
 providerId: dropbox
 provider: dropbox
+approved: false
+safety: true
+public: true
