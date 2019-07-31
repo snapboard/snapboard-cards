@@ -1,8 +1,12 @@
 id: Till7ZaGVw70dngZ324k
 auths:
   asana:
-    label: 1133410222663912
     accountId: asana-1133410222663912-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: 1133410222663912
+categories: []
+desc: ''
+name: Asana - Total Tasks
+lastSave: 1564445998849
 inputs:
   fields: []
 providerId: asana
@@ -10,7 +14,3 @@ provider: stripe
 approved: false
 safety: true
 public: true
-categories: []
-desc: ''
-name: Asana - Total Tasks
-lastSave: 1564445998849

@@ -3,6 +3,12 @@ auths:
   googlemail:
     accountId: googlemail-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
+inputs:
+  fields: []
+providerId: googlemail
+provider: googlemail
+approved: false
+safety: true
 public: true
 icon: cards/l4sUcrRLQcWYIvJhx9GH
 categories: []
@@ -11,9 +17,3 @@ desc: >-
   week.
 name: Google Mail - Heatmap
 lastSave: 1562674157811
-inputs:
-  fields: []
-providerId: googlemail
-provider: googlemail
-approved: false
-safety: true

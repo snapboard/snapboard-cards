@@ -1,20 +1,20 @@
 id: F8NZmBvzBI8LC6Af0uqT
 auths:
   googleanalytics:
-    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
+    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
 inputs:
   fields:
-    - options:
+    - key: fae6548b-0563-4855-8310-a0d624811070
+      options:
         lookup:
-          lookupId: accounts
           providerId: googleanalytics
+          lookupId: accounts
       prop: viewId
       type: provider
       required: true
       caption: ''
       title: View
-      key: fae6548b-0563-4855-8310-a0d624811070
     - type: select
       caption: The period of time to report on
       title: Period

@@ -3,10 +3,6 @@ auths:
   stripe:
     accountId: stripe-acct_17IpH5CYVu0HtKiN-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: acct_17IpH5CYVu0HtKiN
-provider: stripe
-approved: false
-safety: true
-public: true
 categories: []
 desc: ''
 name: Stripe - Balance
@@ -14,3 +10,7 @@ lastSave: 1563367061069
 inputs:
   fields: []
 providerId: stripe
+provider: stripe
+approved: false
+safety: true
+public: true

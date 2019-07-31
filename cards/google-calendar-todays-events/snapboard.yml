@@ -3,7 +3,6 @@ auths:
   googlecalendar:
     accountId: googlecalendar-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
-public: true
 icon: cards/RDJ7v60E0ZU1CODbBJXd
 categories: []
 desc: A list of todays calendar events.
@@ -15,3 +14,4 @@ providerId: googlecalendar
 provider: googlecalendar
 approved: false
 safety: true
+public: true

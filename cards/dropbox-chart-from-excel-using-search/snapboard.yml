@@ -4,21 +4,24 @@ auths:
     accountId: >-
       dropbox-dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: 'dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0'
+public: true
+icon: cards/slFzuGay4L4rgHJLB2v2
+categories: []
 desc: Display a chart with data pulled from an Excel stored on Dropbox.
 name: Dropbox - Chart from Excel  (using search)
 lastSave: 1563292716503
 inputs:
   fields:
-    - type: provider
-      required: true
-      caption: Search for a file (min 2 characters before search)
+    - caption: Search for a file (min 2 characters before search)
       title: Search for File
       key: fae6548b-0563-4855-8310-a0d624811070
       options:
         lookup:
-          lookupId: search
           providerId: dropbox
+          lookupId: search
       prop: filePath
+      type: provider
+      required: true
     - caption: >-
         Range of cells in excel format (should include labels) - e.g.
         Sheet1!A1:H4
@@ -42,6 +45,3 @@ providerId: dropbox
 provider: dropbox
 approved: false
 safety: true
-public: true
-icon: cards/slFzuGay4L4rgHJLB2v2
-categories: []

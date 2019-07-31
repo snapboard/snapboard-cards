@@ -3,9 +3,6 @@ auths:
   mailchimp:
     label: 29168243
     accountId: mailchimp-29168243-Jg3bQS3f6HV0Cgixph1813Iqvh63
-desc: Get the total count of subscribers on a Mailchimp list.
-name: Mailchimp - Subscribers (Test)
-lastSave: 1563529157327
 inputs:
   fields:
     - prop: listId
@@ -23,3 +20,6 @@ safety: true
 public: true
 icon: cards/RNytAV6laB4E9RptXsYd
 categories: []
+desc: Get the total count of subscribers on a Mailchimp list.
+name: Mailchimp - Subscribers (Test)
+lastSave: 1563529157327

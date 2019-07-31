@@ -1,5 +1,9 @@
 id: vUroeSLvKehGgMa5Gox0
 auths: {}
+safety: true
+public: true
+name: Twitter - Follower Count
+lastSave: 1563357054320
 providerId: twitter
 inputs:
   fields:
@@ -9,7 +13,3 @@ inputs:
       title: Username
       key: 6f969810-4813-4bc2-b8c6-abf1486c063c
       prop: username
-safety: true
-public: true
-name: Twitter - Follower Count
-lastSave: 1563357054320

@@ -6,12 +6,12 @@ lastSave: 1564163189847
 providerId: medium
 inputs:
   fields:
-    - title: Username
-      key: f07dd18d-21ee-4945-91ff-5a5356014c5f
-      prop: username
+    - prop: username
       type: text
       required: true
       caption: Your medium username (not including the @)
+      title: Username
+      key: f07dd18d-21ee-4945-91ff-5a5356014c5f
     - caption: If the username is a publication
       prop: isPublication
       title: Is Publication?

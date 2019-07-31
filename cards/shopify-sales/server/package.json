@@ -1,1 +1,1 @@
-{"name":"server-4BEE6SZRbv4UU7TLTFvi","version":"0.0.0","dependencies":{"moment":"2.24.0","moment-timezone":"0.5.26","shopify-api-node":"2.21.0"}}
+{"name":"server-4BEE6SZRbv4UU7TLTFvi","version":"0.0.0","dependencies":{"moment-timezone":"0.5.26","shopify-api-node":"2.21.0","moment":"2.24.0"}}

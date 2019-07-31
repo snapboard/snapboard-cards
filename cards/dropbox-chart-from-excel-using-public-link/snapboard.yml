@@ -4,14 +4,13 @@ auths:
     accountId: >-
       dropbox-dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: 'dbid:AABpghvjwZbXkmpt8nU7vWszDBjsA1zhkY0'
-icon: cards/slFzuGay4L4rgHJLB2v2
-categories: []
-desc: Display a chart with data pulled from an Excel stored on Dropbox.
 name: Dropbox - Chart from Excel (using public link)
 lastSave: 1563292767817
 inputs:
   fields:
-    - caption: >-
+    - type: text
+      required: true
+      caption: >-
         You need to [create a shared
         link](https://help.dropbox.com/files-folders/share/view-only-access) at
         dropbox.com
@@ -19,11 +18,9 @@ inputs:
       key: fae6548b-0563-4855-8310-a0d624811070
       options:
         lookup:
-          providerId: dropbox
           lookupId: search
+          providerId: dropbox
       prop: sharedLinkFile
-      type: text
-      required: true
     - prop: range
       type: text
       required: false
@@ -32,20 +29,23 @@ inputs:
         Sheet1!A1:H4
       title: Range
       key: 95c6a6e2-998e-45da-acd9-5e255b24528c
-    - type: bool
-      caption: Invert the labels from row to column
-      prop: invert
+    - prop: invert
       title: Invert Axis
       key: 563f639a-afd8-4b07-be53-07299a8296be
-    - type: select
+      type: bool
+      caption: Invert the labels from row to column
+    - options:
+        selectOptions: 'bar,line,doughnut,number'
+      prop: type
+      type: select
       caption: 'Display data as bar, line, pie or number'
       title: Chart Type
       key: 4b56214b-93b0-43b8-8175-1fe6a30837ee
-      options:
-        selectOptions: 'bar,line,doughnut,number'
-      prop: type
 providerId: dropbox
 provider: dropbox
 approved: false
 safety: true
 public: true
+icon: cards/slFzuGay4L4rgHJLB2v2
+categories: []
+desc: Display a chart with data pulled from an Excel stored on Dropbox.

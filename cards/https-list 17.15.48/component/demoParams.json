@@ -1,9 +1,0 @@
-{
-  "data": [{
-    "title": "Hello",
-    "desc": "I'm a description pulled from HTTPS url"
-  }, {
-    "title": "World",
-    "desc": "Oh really, I'm a description too"
-  }]
-}
