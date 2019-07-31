@@ -1,0 +1,35 @@
+id: VQiBuRoC0T3OhrO8TUvU
+auths:
+  googlesheets:
+    accountId: googlesheets-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: '106246925041120466290'
+lastSave: 1563357976445
+inputs:
+  fields:
+    - prop: spreadsheetId
+      type: text
+      required: true
+      caption: >-
+        To obtain it, open the desired sheet and extract
+        https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit from the URL
+      title: Sheet ID
+      key: fae6548b-0563-4855-8310-a0d624811070
+    - caption: The single cell range to select in the format *A1* or *Sheet1!A1*
+      title: Range
+      key: 79debdfd-e0cd-4cbf-b4fe-9e6e885e1e8f
+      prop: range
+      type: text
+      required: true
+    - prop: labelRange
+      title: Label Range
+      key: 3e25da26-24b7-4be0-a12d-073dcf9c6344
+      caption: The single cell range to select in the format *A1* or *Sheet1!A1*
+providerId: googlesheets
+provider: googlesheets
+approved: false
+safety: true
+public: true
+icon: cards/zZA2a5GhQ713wEmZBNc2
+categories: []
+desc: Display the number and label from a cell on Google sheets.
+name: Google Sheets - Number from Cell

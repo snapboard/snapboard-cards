@@ -1,0 +1,52 @@
+{
+  "inputs": { "type": "line", "invert": true },
+  "data": {
+    "labels": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "June",
+      "July"
+    ],
+    "datasets": [
+      {
+        "label": "Socks",
+        "data": [
+          11,
+          14,
+          13,
+          12,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "label": "Coffee",
+        "data": [
+          20,
+          18,
+          19,
+          20,
+          18,
+          16,
+          14
+        ]
+      },
+      {
+        "label": "Tea",
+        "data": [
+          17,
+          22,
+          24,
+          18,
+          18,
+          16,
+          18
+        ]
+      }
+    ]
+  }
+}

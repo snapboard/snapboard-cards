@@ -1,0 +1,38 @@
+id: tFlRVInVRoq6mNegBWX0
+auths: {}
+lastSave: 1563371693974
+providerId: https
+inputs:
+  fields:
+    - type: text
+      required: true
+      caption: 'The full URL path of the resource - e.g. https://example.com/path'
+      title: URL
+      key: 215e144c-42e2-4719-8c89-c1688a5acb8b
+      prop: url
+    - prop: path
+      type: text
+      required: false
+      caption: >-
+        Property path of value to display from the response body - e.g.
+        `list[0].age`
+      title: Value - Key Path
+      key: da3c27fc-bd66-4074-80d1-671872cf0dc9
+    - prop: labelPath
+      title: Label - Key Path
+      key: 17023055-a92b-4466-a32d-f56000735a15
+      type: text
+      caption: >-
+        Property path of label to display from the response body - e.g.
+        `list[0].age`
+    - options:
+        selectOptions: 'GET,POST,PUT,PATCH'
+      prop: method
+      type: select
+      caption: The HTTP method to use in request
+      title: Method
+      key: b1eaca2c-767e-47e4-8a4b-4184f6235305
+safety: true
+desc: Display a number retrieved from a HTTPS endpoint.
+public: true
+name: HTTPS - Number

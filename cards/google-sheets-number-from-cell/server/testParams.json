@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "spreadsheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+    "spreadsheetId": "https://docs.google.com/spreadsheets/d/1sEhMQNANU13OWnWTWy85JSqHv_z_XINBM2MBc8WYMS0/edit",
     "range": "Class Data!A2",
     "labelRange": "Class Data!B2" 
   }

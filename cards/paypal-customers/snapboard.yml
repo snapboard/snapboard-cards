@@ -1,0 +1,14 @@
+id: Ddi0cOiD3z9PeivW7Vi7
+auths:
+  paypal: {}
+inputs:
+  fields: []
+providerId: paypal
+provider: stripe
+approved: false
+safety: true
+public: true
+categories: []
+desc: ''
+name: Paypal - Customers
+lastSave: 1564421888949

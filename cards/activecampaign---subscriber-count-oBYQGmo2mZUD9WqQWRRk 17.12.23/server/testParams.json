@@ -1,0 +1,6 @@
+{
+  "inputs": {
+    "url": "https://oauth.snapboard.io/",
+    "path": "version"
+  }
+}

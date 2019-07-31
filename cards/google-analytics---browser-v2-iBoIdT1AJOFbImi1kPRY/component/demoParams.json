@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "label": "Chrome",
+      "value": 26186
+    },
+    {
+      "label": "Safari",
+      "value": 5469
+    },
+    {
+      "label": "Firefox",
+      "value": 1536
+    },
+    {
+      "label": "Safari (in-app)",
+      "value": 1027
+    },
+    {
+      "label": "YaBrowser",
+      "value": 518
+    }
+  ]
+}

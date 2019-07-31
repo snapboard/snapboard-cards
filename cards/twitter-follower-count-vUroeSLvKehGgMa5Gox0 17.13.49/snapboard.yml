@@ -1,0 +1,15 @@
+id: vUroeSLvKehGgMa5Gox0
+auths: {}
+providerId: twitter
+inputs:
+  fields:
+    - type: text
+      required: true
+      caption: Your twitter username WITHOUT the @
+      title: Username
+      key: 6f969810-4813-4bc2-b8c6-abf1486c063c
+      prop: username
+safety: true
+public: true
+name: Twitter - Follower Count
+lastSave: 1563357054320

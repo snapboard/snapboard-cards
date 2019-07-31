@@ -5,6 +5,7 @@ import 'react-table/react-table.css'
 const columnTitles = ['Page', 'Hits']
 
 function Component ({ data, inputs = {} }) {
+  if (!data) return null
   const columns = [{
     Header: 'Referrer',
     accessor: 'label',

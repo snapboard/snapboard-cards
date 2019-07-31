@@ -1,0 +1,13 @@
+id: oBYQGmo2mZUD9WqQWRRk
+auths:
+  activecampaign:
+    accountId: activecampaign-1564156289859-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: '1564156289859'
+safety: true
+desc: Gets the total number of subscribers.
+public: true
+name: ActiveCampaign - Subscriber Count
+lastSave: 1564156673060
+providerId: activecampaign
+inputs:
+  fields: []

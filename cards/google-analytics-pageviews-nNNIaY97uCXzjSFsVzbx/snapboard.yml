@@ -1,0 +1,41 @@
+id: nNNIaY97uCXzjSFsVzbx
+auths:
+  googleanalytics:
+    label: '106246925041120466290'
+    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+provider: googleanalytics
+approved: false
+safety: true
+public: true
+icon: cards/GoKmtweDDbzV1zziMNXR
+categories: []
+desc: A list of pages with top views from Google Analytics.
+name: Google Analytics - Pageviews
+lastSave: 1563484947482
+inputs:
+  fields:
+    - prop: viewId
+      type: provider
+      required: true
+      caption: ''
+      title: View
+      key: fae6548b-0563-4855-8310-a0d624811070
+      options:
+        lookup:
+          providerId: googleanalytics
+          lookupId: accounts
+    - prop: period
+      type: select
+      caption: The period of time to report on
+      title: Period
+      key: eb9ea29d-2f9d-484e-9ab3-a861fb28f337
+      options:
+        selectOptions: 'Today, Week, Month, Year, Last 7 Days, Last 28 Days, Last 90 Days'
+    - type: select
+      caption: Type of value to track
+      title: Metric
+      key: 05033704-6a42-4791-a497-dbbc811474d8
+      options:
+        selectOptions: 'Users, New Users, Sessions'
+      prop: metric
+providerId: googleanalytics

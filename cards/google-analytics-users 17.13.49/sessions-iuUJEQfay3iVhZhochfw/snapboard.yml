@@ -1,0 +1,41 @@
+id: iuUJEQfay3iVhZhochfw
+auths:
+  googleanalytics:
+    accountId: googleanalytics-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: '106246925041120466290'
+inputs:
+  fields:
+    - caption: ''
+      title: View
+      key: fae6548b-0563-4855-8310-a0d624811070
+      options:
+        lookup:
+          providerId: googleanalytics
+          lookupId: accounts
+      prop: viewId
+      type: provider
+      required: true
+    - caption: The period of time to report on
+      title: Period
+      key: eb9ea29d-2f9d-484e-9ab3-a861fb28f337
+      options:
+        selectOptions: 'Today, Week, Month, Year, Last 7 Days, Last 28 Days, Last 90 Days'
+      prop: period
+      type: select
+    - prop: metric
+      type: select
+      caption: Type of value to track
+      title: Metric
+      key: 05033704-6a42-4791-a497-dbbc811474d8
+      options:
+        selectOptions: 'Users, New Users, Sessions'
+providerId: googleanalytics
+provider: googleanalytics
+approved: false
+safety: true
+public: true
+icon: cards/GoKmtweDDbzV1zziMNXR
+categories: []
+desc: Users and sessions over time.
+name: Google Analytics - Users/Sessions
+lastSave: 1563485107500

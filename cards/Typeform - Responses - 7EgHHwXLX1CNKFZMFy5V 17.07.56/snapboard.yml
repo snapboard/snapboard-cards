@@ -1,0 +1,26 @@
+id: 7EgHHwXLX1CNKFZMFy5V
+auths:
+  typeform:
+    accountId: typeform-calum.moore@gmail.com-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: calum.moore@gmail.com
+provider: typeform
+approved: false
+safety: true
+public: true
+icon: cards/7EgHHwXLX1CNKFZMFy5V
+categories: []
+desc: Total number of responses for your Typeform form.
+name: Typeform - Responses
+lastSave: 1563542075846
+inputs:
+  fields:
+    - prop: formId
+      title: Form ID
+      key: fae6548b-0563-4855-8310-a0d624811070
+    - prop: submitOnly
+      type: bool
+      required: false
+      caption: Filter the results to only include submitted responses to your form
+      title: Only Submitted
+      key: af80fd0a-7b93-4832-a591-13e5902df04f
+providerId: typeform

@@ -39,6 +39,8 @@ export default async ({ auths, inputs }) => {
 		}
 	})
 
+	if (!resp.data.reports[0].data.rows) return []
+
 	return resp.data.reports[0].data.rows.map(({ dimensions, metrics }) => ({
 		date: dimensions[0],
 		// hour: dimensions[1],

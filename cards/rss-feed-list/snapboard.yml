@@ -1,0 +1,16 @@
+id: OzGKPvDMfecVKtKxkt7c
+auths: {}
+providerId: rss
+inputs:
+  fields:
+    - type: text
+      required: true
+      caption: 'The full URL path of the RSS feed - e.g. https://example.com/path.rss'
+      title: RSS URL
+      key: 215e144c-42e2-4719-8c89-c1688a5acb8b
+      prop: url
+safety: true
+desc: Display a list of entries from a RSS Feed.
+public: true
+name: RSS Feed - List
+lastSave: 1564417582960

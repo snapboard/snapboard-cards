@@ -3,23 +3,31 @@ auths:
   googlecalendar:
     accountId: googlecalendar-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
     label: '106246925041120466290'
-desc: >-
-  Display Google Calendar events as a heat map - see how busy your week is at a
-  glance!
-name: Google Calendar - Heatmap
-lastSave: 1563360248890
-inputs:
-  fields:
-    - prop: startDate
-      title: Start Date
-      key: d440495b-4ad9-4241-b218-7d41d73c8cc6
-    - prop: endDate
-      title: End Date
-      key: fe6db533-853a-4253-81d3-130e05d11106
-providerId: googlecalendar
-provider: googlecalendar
 approved: false
 safety: true
 public: true
 icon: cards/RDJ7v60E0ZU1CODbBJXd
 categories: []
+desc: >-
+  Display Google Calendar events as a heat map - see how busy your week is at a
+  glance!
+name: Google Calendar - Heatmap
+lastSave: 1564530003363
+inputs:
+  fields:
+    - key: d440495b-4ad9-4241-b218-7d41d73c8cc6
+      type: text
+      caption: >-
+        Start date in the format YYYY-MM-DD (e.g. 2019-01-01) - if blank,
+        current date will be used
+      prop: startDate
+      title: Start Date
+    - prop: endDate
+      title: End Date
+      key: fe6db533-853a-4253-81d3-130e05d11106
+      type: text
+      caption: >-
+        End date in the format YYYY-MM-DD (e.g. 2019-01-01)  - if blank, start
+        date + 100 days will be used
+providerId: googlecalendar
+provider: googlecalendar

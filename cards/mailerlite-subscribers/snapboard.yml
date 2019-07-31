@@ -1,0 +1,16 @@
+id: 8a36RwyUu1hmjGSrPmBx
+auths:
+  mailerlite:
+    accountId: mailerlite-1564438283452-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: '1564438283452'
+desc: ''
+name: MailerLite - Subscribers
+lastSave: 1564438997425
+inputs:
+  fields: []
+providerId: mailerlite
+provider: stripe
+approved: false
+safety: true
+public: true
+categories: []

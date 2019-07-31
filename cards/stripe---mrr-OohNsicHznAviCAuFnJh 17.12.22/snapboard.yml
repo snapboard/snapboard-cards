@@ -1,0 +1,22 @@
+id: OohNsicHznAviCAuFnJh
+auths:
+  stripe:
+    label: acct_17IpH5CYVu0HtKiN
+    accountId: stripe-acct_17IpH5CYVu0HtKiN-Jg3bQS3f6HV0Cgixph1813Iqvh63
+desc: The monthly reoccurring revenue for Stripe.
+name: Stripe - MRR
+lastSave: 1564140846599
+inputs:
+  fields:
+    - type: bool
+      required: false
+      caption: Determines whether trial users are included in total MRR
+      title: Include Trials
+      key: 69935f0d-0908-4634-a5f5-c64d44857faa
+      prop: includeTrials
+providerId: stripe
+provider: stripe
+approved: false
+safety: true
+public: true
+categories: []

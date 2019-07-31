@@ -1,0 +1,19 @@
+id: l4sUcrRLQcWYIvJhx9GH
+auths:
+  googlemail:
+    label: '106246925041120466290'
+    accountId: googlemail-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+desc: >-
+  Display Google Mail emails as a heat map - see how many e-mails you get  a
+  week.
+name: Google Mail - Heatmap
+lastSave: 1562674157811
+inputs:
+  fields: []
+providerId: googlemail
+provider: googlemail
+approved: false
+safety: true
+public: true
+icon: cards/l4sUcrRLQcWYIvJhx9GH
+categories: []

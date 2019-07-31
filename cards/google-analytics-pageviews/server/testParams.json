@@ -1,6 +1,7 @@
 {
   "inputs": {
     "viewId": "195725123",
-    "period": "Last 7 Days"
+    "metric": "Users",
+    "period": "Month"
   }
 }

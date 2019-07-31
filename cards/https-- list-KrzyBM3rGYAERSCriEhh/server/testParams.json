@@ -1,0 +1,7 @@
+{
+  "inputs": {
+    "url": "https://jsonplaceholder.typicode.com/posts",
+    "titleProp": "title",
+    "descProp": "body"
+  }
+}

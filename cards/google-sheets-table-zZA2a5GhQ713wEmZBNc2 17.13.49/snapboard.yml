@@ -1,0 +1,37 @@
+id: zZA2a5GhQ713wEmZBNc2
+auths:
+  googlesheets:
+    accountId: googlesheets-106246925041120466290-Jg3bQS3f6HV0Cgixph1813Iqvh63
+    label: '106246925041120466290'
+name: Google Sheets - Table
+lastSave: 1563356782715
+inputs:
+  fields:
+    - title: Sheet ID
+      key: fae6548b-0563-4855-8310-a0d624811070
+      prop: spreadsheetId
+      type: text
+      required: true
+      caption: >-
+        To obtain it, open the desired sheet and extract
+        https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit from the URL
+    - type: text
+      caption: >-
+        The range to select in the format *A1:C6* or *Sheet1!A1:C6*. First row
+        is used for column headers.
+      prop: range
+      title: Range
+      key: 79debdfd-e0cd-4cbf-b4fe-9e6e885e1e8f
+    - prop: pageSize
+      title: Page Size
+      key: 35e1e305-102a-4c7d-8a7d-246762b668d1
+      type: text
+      caption: The number of results before paging starts
+providerId: googlesheets
+provider: googlesheets
+approved: false
+safety: true
+public: true
+icon: cards/zZA2a5GhQ713wEmZBNc2
+categories: []
+desc: Display Google Sheets data as a table.
