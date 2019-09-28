@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const { FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID } = process.env
 
-console.log(FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID)
+console.log(path.resolve(__dirname, '.env.production'))
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
