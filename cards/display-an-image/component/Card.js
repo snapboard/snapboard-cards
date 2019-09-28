@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DisplayImage7 ({
+function DisplayImage ({
   inputs = {},
 }) {
   return (
@@ -8,4 +8,4 @@ function DisplayImage7 ({
   )
 }
 
-export default DisplayImage7
+export default DisplayImage

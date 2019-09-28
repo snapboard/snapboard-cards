@@ -49,6 +49,9 @@ async function deploy (versionBump) {
 
   await Promise.all(promises)
 
+  await git.add('.')
+  await git.commit('Bump versions')
+
   console.log('All changes deployed')
   // Only deploy changes - unless deploy all flag
 }
