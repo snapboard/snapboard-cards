@@ -34,12 +34,11 @@ const db = admin.firestore()
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function deploy (versionBump) {
-  // const status = await git.status()
-  // if (status.files.length) {
-  //   console.error('Working branch must be clean before deploy')
-  //   process.exit(1)
-  // }
-  // await fs.emptyDir(dirPath)
+  const status = await git.status()
+  if (status.files.length) {
+    console.error('Working branch must be clean before deploy')
+    process.exit(1)
+  }
 
   const dirList = await fs.readdir(dirPath)
   const promises = map(dirList.slice(0, 2), async (dir) => {
