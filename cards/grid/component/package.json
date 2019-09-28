@@ -1,6 +1,6 @@
 {
   "name": "@snapboard/component-grid",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "dependencies": {
     "@snapboard/grid": "0.21.0",
     "react": "16.8.6",
