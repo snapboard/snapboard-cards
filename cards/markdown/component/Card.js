@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
-function Component ({
-  inputs = {},
-}) {
+function Markdown ({ inputs }) {
   return (
     <div className='container'>
       <ReactMarkdown source={inputs.markdown || ''} />
@@ -11,4 +9,4 @@ function Component ({
   )
 }
 
-export default Component
+export default Markdown
