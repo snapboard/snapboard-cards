@@ -4,9 +4,10 @@ const admin = require('firebase-admin')
 const firebase = require('firebase')
 const fs = require('fs-extra')
 const yaml = require('js-yaml')
+const simpleGit = require('simple-git/promise')
+const semver = require('semver')
 const isEqual = require('lodash/isEqual')
 const map = require('lodash/map')
-const reduce = require('lodash/reduce')
 const axios = require('axios')
 const envfile = require('envfile')
 
@@ -28,13 +29,20 @@ firebase.initializeApp({
   apiKey: FIREBASE_API_KEY,
 })
 
+const git = simpleGit(path.resolve(__dirname, '../'))
 const db = admin.firestore()
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function deploy (versionBump) {
+  const status = await git.status()
+  if (status.files.length) {
+    console.error('Working branch must be clean before deploy')
+    process.exit(1)
+  }
+  // await fs.emptyDir(dirPath)
+
   const dirList = await fs.readdir(dirPath)
   const promises = map(dirList, async (dir) => {
-    console.log(dir)
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
   })
@@ -46,7 +54,7 @@ async function deploy (versionBump) {
 }
 
 async function deployCard (dir, versionBump) {
-  const { id, ...currData } = await getCardData(dir)
+  const { id, version, ...currData } = await getCardData(dir)
   const card = await db.collection('cards').doc(id).get()
   const cardData = card.data()
   if (card && cardData) {
@@ -89,6 +97,13 @@ async function deployCard (dir, versionBump) {
     versionBump,
     changes: 'Auto deployment',
   })
+
+  const newVersion = semver.inc(latestVersion || '0.0.1', versionBump)
+  console.log(`Updating version... ${newVersion}`)
+
+  await updateVersion(path.resolve(cardPath, './snapboard.yml'), newVersion)
+  await updateVersion(path.resolve(cardPath, './component/package.json'), newVersion)
+  await updateVersion(path.resolve(cardPath, './server/package.json'), newVersion)
 
   console.log(`Done... ${id}`)
 }
@@ -141,6 +156,15 @@ async function publish (data) {
       Authorization: `Bearer ${idToken}`
     }
   })
+}
+
+async function updateVersion (path, version, yaml) {
+  const str = await fs.readFile(path, 'utf8').catch(() => null)
+  if (!str) return
+  const obj = yaml.load(str)
+  obj.version = version
+  const out = yaml ? yaml.safeDump(obj) : JSON.stringify(obj, null, 2)
+  return fs.outputFileSync(path, out)
 }
 
 function noramlizeJSON (obj, prop) {

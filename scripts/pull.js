@@ -4,12 +4,8 @@ const admin = require('firebase-admin')
 const fs = require('fs-extra')
 const yaml = require('js-yaml')
 const simpleGit = require('simple-git/promise')
-// const isEqual = require('lodash/isEqual')
 const map = require('lodash/map')
-// const reduce = require('lodash/reduce')
-// const axios = require('axios')
-// const jwt = require('jsonwebtoken')
-// const envfile = require('envfile')
+
 
 require('dotenv').config()
 
@@ -23,11 +19,11 @@ const git = simpleGit(path.resolve(__dirname, '../'))
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function pull () {
-  // const status = await git.status()
-  // if (status.files.length) {
-  //   console.error('Working branch must be clean before pull')
-  //   process.exit(1)
-  // }
+  const status = await git.status()
+  if (status.files.length) {
+    console.error('Working branch must be clean before pull')
+    process.exit(1)
+  }
   // await fs.emptyDir(dirPath)
 
   const cardsCollection = await db.collection('cards')
