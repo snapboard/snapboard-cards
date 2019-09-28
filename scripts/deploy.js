@@ -19,6 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const { FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID } = process.env
 
+console.log(FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID)
+
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
   databaseURL: `https://${PROJECT_ID}.firebaseio.com`,
@@ -34,14 +36,14 @@ const db = admin.firestore()
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function deploy (versionBump) {
-  const status = await git.status()
-  if (status.files.length) {
-    console.error('Working branch must be clean before deploy')
-    process.exit(1)
-  }
+  // const status = await git.status()
+  // if (status.files.length) {
+  //   console.error('Working branch must be clean before deploy')
+  //   process.exit(1)
+  // }
 
   const dirList = await fs.readdir(dirPath)
-  const promises = map(dirList, async (dir) => {
+  const promises = map(dirList.slice(0, 2), async (dir) => {
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
   })
