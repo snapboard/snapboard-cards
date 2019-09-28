@@ -33,6 +33,7 @@ async function pull () {
   const cardsCollection = await db.collection('cards')
     .where('workspaceId', '==', 'admin')
     .where('active', '==', true)
+    .where('providerId', '==', 'snapboard')
     .get()
   const cards = toArray(cardsCollection)
 
@@ -48,8 +49,8 @@ async function pullCard (card) {
   const cardDraft = await db.collection('cards').doc(cardId).collection('versions').doc('draft').get()
   const { component = {}, server = {}, ...cardDetail } = cardDraft.data()
 
-  const dir = `${cardDetail.name.toLowerCase().replace(/[()]/g, '').replace(/(\s+-\s+|\s+|\/)/g, '-')}`
-  const cardDir = path.resolve(dirPath, dir)
+  const name = `${cardDetail.name.toLowerCase().replace(/[()]/g, '').replace(/(\s+-\s+|\s+|\/)/g, '-')}`
+  const cardDir = path.resolve(dirPath, name)
   const yamlData = await fs.readFile(path.resolve(cardDir, 'snapboard.yml'), 'utf8').catch(() => null)
   const currData = yamlData && yaml.load(yamlData)
 
@@ -65,24 +66,25 @@ async function pullCard (card) {
     path.resolve(cardDir, 'snapboard.yml'),
     yaml.safeDump({
       id: cardId,
+      version: card.data().version || '0.0.0',
       auths: server.auths || {}, 
       ...cardDetail
     })
   )
 
-  await generateServer(server, cardId, cardDetail.version, cardDir)
-  await generateComponent(component, cardId, cardDetail.version, cardDir)
+  if (cardDetail.hasData) await generateServer(name, server, card.data().version, cardDir)
+  await generateComponent(name, component, card.data().version, cardDir)
 
   return true
 }
 
-async function generateServer (server, cardId, version = '0.0.0', cardDir) {
+async function generateServer (name, server, version = '0.0.0', cardDir) {
   // Generate server code
   const { dependencies, code, testParams } = server
   fs.outputJSONSync(
     path.resolve(cardDir, 'server/package.json'),
     { 
-      name: `server-${cardId}`, 
+      name: `@snapboard/server-${name}`, 
       version,  
       dependencies,
     },
@@ -98,15 +100,16 @@ async function generateServer (server, cardId, version = '0.0.0', cardDir) {
   )
 }
 
-async function generateComponent (server, cardId, version = '0.0.0', cardDir) {
-  const { dependencies, code, css, demoParams } = server
+async function generateComponent (name, comp, version = '0.0.0', cardDir) {
+  const { dependencies, code, css, demoParams } = comp
   fs.outputJSONSync(
     path.resolve(cardDir, 'component/package.json'),
     { 
-      name: `component-${cardId}`, 
+      name: `@snapboard/component-${name}`, 
       version,  
       dependencies,
     },
+    { spaces: 2 },
   )
 
   fs.outputFileSync(

@@ -1,0 +1,10 @@
+{
+  "name": "@snapboard/component-grid",
+  "version": "0.0.0",
+  "dependencies": {
+    "@snapboard/grid": "0.21.0",
+    "react": "16.8.6",
+    "uuid": "3.3.3",
+    "react-dom": "16.8.6"
+  }
+}

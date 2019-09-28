@@ -1,20 +1,31 @@
 #!/usr/bin/env node
 const path = require('path')
 const admin = require('firebase-admin')
+const firebase = require('firebase')
 const fs = require('fs-extra')
 const yaml = require('js-yaml')
 const isEqual = require('lodash/isEqual')
 const map = require('lodash/map')
 const reduce = require('lodash/reduce')
 const axios = require('axios')
-const jwt = require('jsonwebtoken')
 const envfile = require('envfile')
 
-require('dotenv').config()
+if (process.env.NODE_ENV === 'production') {
+  require('dotenv').config({ path: path.resolve(__dirname, '.env.production') })
+} else {
+  require('dotenv').config()
+}
+
+const { FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID } = process.env
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
-  databaseURL: 'https://snapreport.firebaseio.com',
+  databaseURL: `https://${PROJECT_ID}.firebaseio.com`,
+})
+
+firebase.initializeApp({
+  databaseURL: `https://${PROJECT_ID}.firebaseio.com`,
+  apiKey: FIREBASE_API_KEY,
 })
 
 const db = admin.firestore()
@@ -23,6 +34,7 @@ const dirPath = path.resolve(__dirname, '../cards')
 async function deploy (versionBump) {
   const dirList = await fs.readdir(dirPath)
   const promises = map(dirList, async (dir) => {
+    console.log(dir)
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
   })
@@ -48,9 +60,11 @@ async function deployCard (dir, versionBump) {
     }
 
     // Normalize JSON files
-    noramlizeJSON(latestVersionMatch.component, 'demoParams')
-    noramlizeJSON(latestVersionMatch.server, 'testParams')
-    if (!latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
+    if (latestVersionMatch.component) noramlizeJSON(latestVersionMatch.component, 'demoParams')
+    if (currData.hasData) {
+      noramlizeJSON(latestVersionMatch.server, 'testParams')
+      if (!latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
+    }
 
     // Don't deploy if no changes!
     if (isEqual(latestVersionMatch, currData)) {
@@ -70,7 +84,7 @@ async function deployCard (dir, versionBump) {
   await db.collection('cards').doc(id).collection('versions').doc('draft').set(currData)
   if (envObj) await db.collection('cards').doc(id).collection('private').doc('env').set(envObj)
 
-  await axios.post(`https://us-central1-snapreport.cloudfunctions.net/publishAdmin?token=${getToken()}`, {
+  await publish({
     cardId: id,
     versionBump,
     changes: 'Auto deployment',
@@ -82,12 +96,7 @@ async function deployCard (dir, versionBump) {
 async function getCardData (dir) {
   const cardPath = path.resolve(dirPath, dir)
   const yamlData = await fs.readFile(path.resolve(cardPath, 'snapboard.yml'), 'utf8')
-  const { auths, ...config } = yaml.load(yamlData)
-
-  // Get server data
-  const serverCode = await fs.readFile(path.resolve(cardPath, './server/index.js'), 'utf8')
-  const serverPkg = await fs.readJson(path.resolve(cardPath, './server/package.json'))
-  const serverTestParams = require(path.resolve(cardPath, './server/testParams.json'))
+  const { auths, version, ...config } = yaml.load(yamlData)
 
   // Get component data
   const componentCode = await fs.readFile(path.resolve(cardPath, './component/Card.js'), 'utf8')
@@ -95,15 +104,8 @@ async function getCardData (dir) {
   const componentPkg = await fs.readJson(path.resolve(cardPath, './component/package.json'))
   const componentDemoParams = require(path.resolve(cardPath, './component/demoParams.json'))
 
-  // Get the required data
-  return {
+  const cardData = {
     ...config,
-    server: {
-      code: serverCode,
-      dependencies: (serverPkg && serverPkg.dependencies) || {},
-      testParams: JSON.stringify(serverTestParams || {}, null, 2),
-      auths,
-    },
     component: {
       code: componentCode,
       css: componentCss,
@@ -111,10 +113,34 @@ async function getCardData (dir) {
       demoParams: JSON.stringify(componentDemoParams || {}, null, 2),
     },
   }
+
+  if (config.hasData) {
+    // Get server data
+    const serverCode = await fs.readFile(path.resolve(cardPath, './server/index.js'), 'utf8')
+    const serverPkg = await fs.readJson(path.resolve(cardPath, './server/package.json'))
+    const serverTestParams = require(path.resolve(cardPath, './server/testParams.json'))
+
+    cardData.server = {
+      code: serverCode,
+      dependencies: (serverPkg && serverPkg.dependencies) || {},
+      testParams: JSON.stringify(serverTestParams || {}, null, 2),
+      auths,
+    }
+  }
+
+  // Get the required data
+  return cardData
 }
 
-function getToken () {
-  return jwt.sign({ admin: true }, process.env.JWT_SECRET)
+async function publish (data) {
+  const customToken = await admin.auth().createCustomToken(DEPLOY_USER_ID)
+  const cred = await firebase.auth().signInWithCustomToken(customToken)
+  const idToken = await cred.user.getIdToken()
+  return axios.post(PUBLISH_URL, data, { 
+    headers: { 
+      Authorization: `Bearer ${idToken}`
+    }
+  })
 }
 
 function noramlizeJSON (obj, prop) {
@@ -123,5 +149,5 @@ function noramlizeJSON (obj, prop) {
 
 if (require.main === module) {
   const [versionBump = 'patch'] = process.argv.slice(2)
-  deploy(versionBump)
+  deploy(versionBump).catch(console.error)
 }

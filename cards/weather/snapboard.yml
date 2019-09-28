@@ -1,0 +1,26 @@
+id: N9VcZkKuzHhAWGQuhbo8
+version: 0.0.11
+auths: {}
+hasData: true
+safety: true
+desc: A weather card. Giving you weather from around the globe.
+public: true
+name: Weather
+lastSave: 1569664857493
+providerId: snapboard
+inputs:
+  fields:
+    - type: location
+      required: true
+      caption: Set the location for weather lookup
+      title: Location
+      key: 55732da5-a774-4ca3-ac40-6bd4a62f99fa
+      prop: location
+    - key: 2547a316-ad5d-438a-ae4a-344aaa2711c9
+      options:
+        selectOptions: 'Auto, Standard, UK, US'
+      prop: unit
+      type: select
+      required: false
+      caption: ''
+      title: Temperature Unit

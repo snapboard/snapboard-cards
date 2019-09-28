@@ -1,0 +1,16 @@
+id: cwjkMNybv6aVlPdkqbar
+version: 0.0.3
+auths: {}
+safety: true
+public: true
+name: Display an Image
+lastSave: 1569664640869
+providerId: snapboard
+inputs:
+  fields:
+    - prop: src
+      title: Source URL
+      key: 26171933-307b-4483-b869-0e6e6a7823d5
+      type: text
+      caption: The URL of the image to display
+hasData: false

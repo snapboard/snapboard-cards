@@ -1,15 +1,17 @@
 id: wBEcn6SWXhTp2mn6s7Ri
+version: 0.0.3
 auths: {}
-safety: true
-public: true
-name: Markdown
-lastSave: 1562769451016
 providerId: snapboard
 inputs:
   fields:
-    - key: 772246a7-1c49-48df-97fc-926581c76ea5
-      options:
+    - options:
         lookup: projects
       type: code
       prop: markdown
       title: Markdown
+      key: 772246a7-1c49-48df-97fc-926581c76ea5
+hasData: false
+safety: true
+public: true
+name: Markdown
+lastSave: 1568393589706

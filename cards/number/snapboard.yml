@@ -1,0 +1,24 @@
+id: gAmtp3Hm4Gzj4jdxsHoy
+version: 0.0.2
+auths: {}
+public: true
+categories: []
+desc: ''
+name: Number
+lastSave: 1569599351738
+inputs:
+  fields:
+    - prop: number
+      title: Number
+      key: ab90ffde-9177-4892-b9da-878b0c153e0f
+      required: true
+      type: text
+    - type: text
+      prop: label
+      title: Label
+      key: 39ac62ba-01ab-485f-a8d1-0e053b5b344c
+providerId: snapboard
+hasData: false
+provider: stripe
+approved: false
+safety: true
