@@ -1,11 +1,10 @@
 import { configure } from '@storybook/react';
+import './base.css'
 
-// automatically import all files ending in *.stories.js
-const req = require.context('../stories', true, /\.stories\.js$/);
-// const req2 = require.context('../cards', true, /component\/(index\.js|styles\.css)$/);
+// automatically import all files ending in *.sb.js
+const req = require.context('../stories', true, /\.sb\.js$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
-  // req2.keys().forEach(filename => req2(filename));
 }
 
 configure(loadStories, module);

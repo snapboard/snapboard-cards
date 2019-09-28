@@ -3,14 +3,21 @@ version: 0.0.10
 auths: {}
 safety: true
 public: true
-name: Display an Image
+name: Image
 lastSave: 1569664640869
 providerId: snapboard
 inputs:
   fields:
     - prop: src
       title: Source URL
-      key: 26171933-307b-4483-b869-0e6e6a7823d5
+      key: src
       type: text
       caption: The URL of the image to display
+    - prop: position
+      title: Position
+      key: position
+      type: select
+      options:
+        selectOptions: 'Width,Height,Contain'
+      caption: How should the image be positioned
 hasData: false

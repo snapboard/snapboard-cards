@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { storiesOf } from '@storybook/react'
 import { object, withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import Center from './Center'
+import Center from './util/Center'
 
 const Card = styled.div`
 	border: 1px solid #eee;
@@ -15,10 +15,7 @@ const Card = styled.div`
 
 const req = require.context('../cards', true, /component\/Card\.js$/);
 
-console.log(req)
-
 req.keys().forEach((key) => {
-	console.log(key)
 	const name = key.substr(2).split('/')[0]
 	const folder = name.split('-')[0]
 	const mod = require(`../cards/${key.substr(2)}`)
@@ -30,7 +27,7 @@ req.keys().forEach((key) => {
 			const props = object('Props', testParams || {}) || {}
   		return (
   			<Center width={400} height={400}>
-					<Card>
+					<Card className='#root'>
   					<CardContent update={action('update')} {...props} />
 					</Card>
   				<style dangerouslySetInnerHTML={{ __html: css }} />

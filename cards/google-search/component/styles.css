@@ -1,4 +1,11 @@
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
   padding: 1em 2em;
   text-align: center;
 }
