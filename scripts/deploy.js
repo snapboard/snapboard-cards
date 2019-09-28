@@ -41,7 +41,7 @@ async function deploy (versionBump) {
   }
 
   const dirList = await fs.readdir(dirPath)
-  const promises = map(dirList.slice(0, 2), async (dir) => {
+  const promises = map(dirList, async (dir) => {
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
   })
