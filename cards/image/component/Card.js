@@ -11,7 +11,7 @@ function Image ({ inputs }) {
     style.width = '100%'
   }
   return (
-    <img src={inputs.src} style={style} />
+    <img src={inputs.src} style={style} alt='' />
   )
 }
 
