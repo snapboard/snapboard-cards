@@ -12,14 +12,13 @@ const axios = require('axios')
 const envfile = require('envfile')
 
 if (process.env.NODE_ENV === 'production') {
-  require('dotenv').config({ path: path.resolve(__dirname, '.env.production') })
+  require('dotenv').config({ path: path.resolve(__dirname, '../.env.production') })
 } else {
   require('dotenv').config()
 }
 
 const { FIREBASE_API_KEY, PROJECT_ID, PUBLISH_URL, DEPLOY_USER_ID } = process.env
 
-console.log(path.resolve(__dirname, '.env.production'))
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
