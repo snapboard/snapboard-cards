@@ -34,15 +34,15 @@ const db = admin.firestore()
 const dirPath = path.resolve(__dirname, '../cards')
 
 async function deploy (versionBump) {
-  const status = await git.status()
-  if (status.files.length) {
-    console.error('Working branch must be clean before deploy')
-    process.exit(1)
-  }
+  // const status = await git.status()
+  // if (status.files.length) {
+  //   console.error('Working branch must be clean before deploy')
+  //   process.exit(1)
+  // }
   // await fs.emptyDir(dirPath)
 
   const dirList = await fs.readdir(dirPath)
-  const promises = map(dirList, async (dir) => {
+  const promises = map(dirList.slice(0, 2), async (dir) => {
     if (dir.startsWith('.')) return null
     await deployCard(dir, versionBump)
   })
@@ -70,7 +70,7 @@ async function deployCard (dir, versionBump) {
     // Normalize JSON files
     if (latestVersionMatch.component) noramlizeJSON(latestVersionMatch.component, 'demoParams')
     if (currData.hasData) {
-      noramlizeJSON(latestVersionMatch.server, 'testParams')
+      if (latestVersionMatch.server) noramlizeJSON(latestVersionMatch.server, 'testParams')
       if (!latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
     }
 
@@ -98,10 +98,11 @@ async function deployCard (dir, versionBump) {
     changes: 'Auto deployment',
   })
 
-  const newVersion = semver.inc(latestVersion || '0.0.1', versionBump)
+  const newVersion = semver.inc(cardData.latest && cardData.latest.version || '0.0.1', versionBump)
   console.log(`Updating version... ${newVersion}`)
 
-  await updateVersion(path.resolve(cardPath, './snapboard.yml'), newVersion)
+  const cardPath = path.resolve(dirPath, dir)
+  await updateVersion(path.resolve(cardPath, './snapboard.yml'), newVersion, true)
   await updateVersion(path.resolve(cardPath, './component/package.json'), newVersion)
   await updateVersion(path.resolve(cardPath, './server/package.json'), newVersion)
 
@@ -158,12 +159,12 @@ async function publish (data) {
   })
 }
 
-async function updateVersion (path, version, yaml) {
+async function updateVersion (path, version, useYaml) {
   const str = await fs.readFile(path, 'utf8').catch(() => null)
   if (!str) return
   const obj = yaml.load(str)
   obj.version = version
-  const out = yaml ? yaml.safeDump(obj) : JSON.stringify(obj, null, 2)
+  const out = useYaml ? yaml.safeDump(obj) : JSON.stringify(obj, null, 2)
   return fs.outputFileSync(path, out)
 }
 
