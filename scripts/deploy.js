@@ -73,7 +73,7 @@ async function deployCard (dir, versionBump) {
     if (latestVersionMatch.component) noramlizeJSON(latestVersionMatch.component, 'demoParams')
     if (currData.hasData) {
       if (latestVersionMatch.server) noramlizeJSON(latestVersionMatch.server, 'testParams')
-      if (!latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
+      if (latestVersionMatch.server && !latestVersionMatch.server.dependencies) latestVersionMatch.server.dependencies = {}
     }
 
     // Don't deploy if no changes!
