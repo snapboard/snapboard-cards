@@ -4,16 +4,8 @@ auths: {}
 desc: ''
 name: Grid
 lastSave: 1569663290801
-inputs:
-  fields:
-    - prop: sheet
-      title: Sheet
-      key: 3967c063-9f36-4e45-8c06-de3888e0d030
-      required: false
-      type: text
 providerId: snapboard
 hasData: false
-provider: stripe
 approved: false
 safety: true
 public: false
