@@ -8,13 +8,19 @@ import style from '../cards/grid/component/styles.css'
 
 const State = ({ children, delay }) => {
   const [data, setData] = useState()
+  const [metadata, setMetadata] = useState()
   const [loading, setLoading] = useState()
-  return children(data, (value) => {
-    if (!delay) return setData(value)
+  return children(data, metadata, (data, metadata) => {
+    if (!delay) {
+      setData(data)
+      setMetadata(metadata)
+      return
+    }
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      return setData(value)
+      setData(data)
+      setMetadata(metadata)
     }, delay)
   }, loading)
 }
@@ -31,9 +37,9 @@ storiesOf('Grid', module)
   .add('Controller', () => {
     return (
       <State>
-        {(data, setData) => (
+        {(data, metadata, set) => (
           <Card style={style}>
-            <Grid set={setData} data={data} />
+            <Grid set={set} data={data} metadata={metadata} />
           </Card>
         )}
       </State>
@@ -43,13 +49,13 @@ storiesOf('Grid', module)
   .add('With Delay', () => {
     return (
       <State delay={2000}>
-        {(data, setData, loading) => (
+        {(data, metadata, set, loading) => (
           <>
             <div>
               {loading ? 'Loading...' : 'Done'}
             </div>
             <Card style={style}>
-              <Grid set={setData} data={data} />
+              <Grid set={set} data={data} metadata={metadata} />
             </Card>
           </>
         )}

@@ -21,7 +21,7 @@ class GridController extends React.Component {
       const now = Date.now()
       const currentData = this.getData(this.props, prevState)
       const newData = { ...currentData, ...fn(currentData), timestamp: now }
-      if (this.props.set) this.props.set(newData)
+      if (this.props.set) this.props.set(newData.rows, { timestamp: now, columns: newData.columns })
       return { data: newData }
     })
   }
@@ -77,11 +77,14 @@ class GridController extends React.Component {
 
   getData = (props, state) => {
     const stateData = state.data || {}
-    const propsData = props.data || {}
+    const propsData = {
+      rows: props.data || [],
+      ...(props.metadata || {}),
+    }
     return stateData.timestamp && propsData.timestamp &&
       stateData.timestamp > propsData.timestamp
       ? stateData
-      : (props.data || defaultData)
+      : (props.data || props.metadata ? propsData : defaultData)
   }
 
   render () {
