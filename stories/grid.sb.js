@@ -6,9 +6,17 @@ import Grid from '../cards/grid/component/Card'
 import demoParams from '../cards/grid/component/demoParams'
 import style from '../cards/grid/component/styles.css'
 
-const State = ({ children }) => {
+const State = ({ children, delay }) => {
   const [data, setData] = useState()
-  return children(data, setData)
+  const [loading, setLoading] = useState()
+  return children(data, (value) => {
+    if (!delay) return setData(value)
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      return setData(value)
+    }, delay)
+  }, loading)
 }
 
 storiesOf('Grid', module)
@@ -27,6 +35,23 @@ storiesOf('Grid', module)
           <Card style={style}>
             <Grid set={setData} data={data} />
           </Card>
+        )}
+      </State>
+    )
+  })
+
+  .add('With Delay', () => {
+    return (
+      <State delay={2000}>
+        {(data, setData, loading) => (
+          <>
+            <div>
+              {loading ? 'Loading...' : 'Done'}
+            </div>
+            <Card style={style}>
+              <Grid set={setData} data={data} />
+            </Card>
+          </>
         )}
       </State>
     )

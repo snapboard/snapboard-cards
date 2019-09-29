@@ -2,13 +2,12 @@ import React from 'react'
 import Grid from '@snapboard/grid'
 import merge from 'lodash/merge'
 
-const defaultColumns = [
-  { key: 'month', name: 'Month', editable: true, width: 140 },
-  { key: 'spend', name: 'Spend', editable: true, width: 140 },
-]
-
 const defaultData = {
-  columns: defaultColumns,
+  timestamp: null,
+  columns: [
+    { key: 'Month', name: 'Month', editable: true, width: 140 },
+    { key: 'Spend', name: 'Spend', editable: true, width: 140 },
+  ],
   rows: [{}, {}],
 }
 
@@ -19,8 +18,9 @@ class GridController extends React.Component {
 
   update = (fn) => {
     this.setState((prevState) => {
-      const currentData = this.props.loading ? prevState.state.data : (this.props.data || defaultData)
-      const newData = { ...currentData, ...fn(currentData) }
+      const now = Date.now()
+      const currentData = this.getData(this.props, prevState)
+      const newData = { ...currentData, ...fn(currentData), timestamp: now }
       if (this.props.set) this.props.set(newData)
       return { data: newData }
     })
@@ -75,8 +75,17 @@ class GridController extends React.Component {
     }))
   }
 
+  getData = (props, state) => {
+    const stateData = state.data || {}
+    const propsData = props.data || {}
+    return stateData.timestamp && propsData.timestamp &&
+      stateData.timestamp > propsData.timestamp
+      ? stateData
+      : (props.data || defaultData)
+  }
+
   render () {
-    const data = this.props.loading ? this.state.data : (this.props.data || defaultData)
+    const data = this.getData(this.props, this.state)
     const { columns, rows } = data
 
     const columnMenu = [{
