@@ -2,10 +2,9 @@
   "name": "@snapboard/component-grid",
   "version": "0.0.7",
   "dependencies": {
-    "@snapboard/grid": "^0.25.0",
+    "@snapboard/grid": "^0.27.0",
     "lodash": "^4.17.15",
     "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "uuid": "3.3.3"
+    "react-dom": "16.8.6"
   }
 }

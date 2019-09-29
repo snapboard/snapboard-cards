@@ -2477,10 +2477,10 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@snapboard/grid@^0.25.0":
-  version "0.25.0"
-  resolved "https://registry.yarnpkg.com/@snapboard/grid/-/grid-0.25.0.tgz#d6a80e5c6a32db70b21d4f889db9c85e3b2d9ab5"
-  integrity sha512-l6n0dTBgjV0wZgFJ2jSLmdu9unJMvXcXFtGvuViUY+s2u5n32LpXeMEuKjv1dbYrj8skBdiaAim+0iGltWo9Uw==
+"@snapboard/grid@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@snapboard/grid/-/grid-0.27.0.tgz#0ae7becb4c68143389fdb5f1395a081386dc7d48"
+  integrity sha512-Kfkxjwj7auywe0iQeVOBgHEn82ziFTpaqvS4ARaAFjT9wBQsWumVPYat2tpCS4oDgTRG5fzoV8reGm4zs6EQBg==
   dependencies:
     "@emotion/core" "^10.0.14"
     "@emotion/styled" "^10.0.14"
@@ -13995,11 +13995,6 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
-
-uuid@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
-  integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
 uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.2"
