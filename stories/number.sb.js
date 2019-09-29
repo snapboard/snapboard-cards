@@ -6,7 +6,7 @@ import Number from '../cards/number/component/Card'
 import demoParams from '../cards/number/component/demoParams'
 import style from '../cards/number/component/styles.css'
 
-storiesOf(`Number`, module)
+storiesOf('Number', module)
   .add('Demo Params', () => {
     return (
       <Card style={style}>

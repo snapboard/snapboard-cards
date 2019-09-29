@@ -2477,10 +2477,10 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@snapboard/grid@0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@snapboard/grid/-/grid-0.21.0.tgz#58d0b6563e84f6773c7385ef175d8eb9bc5597af"
-  integrity sha512-NdE0rWVlMYq8dWptbF/OAJprFpBES3DtTSnKiaH56242CmYMDNSaGJndFS/E39BNZp3/k5VBi7zeuV9dz+g5WA==
+"@snapboard/grid@^0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@snapboard/grid/-/grid-0.25.0.tgz#d6a80e5c6a32db70b21d4f889db9c85e3b2d9ab5"
+  integrity sha512-l6n0dTBgjV0wZgFJ2jSLmdu9unJMvXcXFtGvuViUY+s2u5n32LpXeMEuKjv1dbYrj8skBdiaAim+0iGltWo9Uw==
   dependencies:
     "@emotion/core" "^10.0.14"
     "@emotion/styled" "^10.0.14"
