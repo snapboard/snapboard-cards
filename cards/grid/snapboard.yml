@@ -1,12 +1,12 @@
 id: wrsqGXiMQTw40v7QMbfQ
-version: 0.0.3
+version: 0.0.9
 auths: {}
 desc: ''
+public: false
 name: Grid
-lastSave: 1569663290801
+lastSave: 1569792786130
+categories: []
 providerId: snapboard
 hasData: false
-approved: false
 safety: true
-public: false
-categories: []
+approved: false
