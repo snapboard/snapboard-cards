@@ -1,6 +1,5 @@
 import React from 'react'
 import Grid from '@snapboard/grid'
-import Button from '@snapboard/ui/Button'
 import Modal from 'react-modal'
 import merge from 'lodash/merge'
 import keyBy from 'lodash/keyBy'
@@ -189,7 +188,7 @@ class GridController extends React.Component {
             <div style={{ marginBottom: '0.5em' }}>
               <input value={this.state.modalInput} onChange={e => this.setState({ modalInput: e.target.value })} />
             </div>
-            <Button onClick={this.onRenameColumn}>Done</Button>
+            <button className='btn' onClick={this.onRenameColumn}>Done</button>
           </div>
         </Modal>
       </div>
