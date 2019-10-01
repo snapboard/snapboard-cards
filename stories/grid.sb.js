@@ -42,6 +42,9 @@ storiesOf('Grid', module)
             <code>
               {JSON.stringify(data)}
             </code>
+            <code>
+              {JSON.stringify(metadata)}
+            </code>
             <Card style={style}>
               <Grid set={set} data={data} metadata={metadata} />
             </Card>

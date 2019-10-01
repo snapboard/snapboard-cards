@@ -7,8 +7,8 @@ import keyBy from 'lodash/keyBy'
 const defaultData = {
   timestamp: null,
   columns: [
-    { key: 'Month', name: 'Month', editable: true, width: 140 },
-    { key: 'Spend', name: 'Spend', editable: true, width: 140 },
+    { key: 'Name', name: 'Name', editable: true, width: 140 },
+    { key: 'Col B', name: 'Col B', editable: true, width: 140 },
   ],
   rows: [{}, {}],
 }
@@ -125,10 +125,12 @@ class GridController extends React.Component {
     })
   }
 
-  onAddRow = () => {
-    this.update((data) => ({
-      rows: data.rows.concat([{}]),
-    }))
+  onAddRow = (rowIndex) => {
+    this.update((data) => {
+      const rows = data.rows.slice(0)
+      rows.splice(rowIndex, 0, {})
+      return { rows }
+    })
   }
 
   getData = (props, state) => {
@@ -159,6 +161,12 @@ class GridController extends React.Component {
       }),
     }]
     const rowMenu = [{
+      text: 'Insert Above',
+      onClick: ({ rowIndex }) => this.onAddRow(rowIndex),
+    }, {
+      text: 'Insert Below',
+      onClick: ({ rowIndex }) => this.onAddRow(rowIndex - 1),
+    }, {
       text: 'Delete',
       onClick: this.onDeleteRow,
     }]
