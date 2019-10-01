@@ -165,7 +165,7 @@ class GridController extends React.Component {
     }]
 
     return (
-      <>
+      <div style={{ height: '100%' }}>
         <Grid
           columns={columns}
           rowCount={rows.length}
@@ -192,7 +192,7 @@ class GridController extends React.Component {
             <Button onClick={this.onRenameColumn}>Done</Button>
           </div>
         </Modal>
-      </>
+      </div>
     )
   }
 }
