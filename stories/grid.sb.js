@@ -38,9 +38,14 @@ storiesOf('Grid', module)
     return (
       <State>
         {(data, metadata, set) => (
-          <Card style={style}>
-            <Grid set={set} data={data} metadata={metadata} />
-          </Card>
+          <>
+            <code>
+              {JSON.stringify(data)}
+            </code>
+            <Card style={style}>
+              <Grid set={set} data={data} metadata={metadata} />
+            </Card>
+          </>
         )}
       </State>
     )

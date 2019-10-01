@@ -2,3 +2,22 @@ body {
   border-top: 1px solid #eee;
   overflow: hidden;
 }
+
+.modal {
+  padding: 1em;
+}
+
+.modal input {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 0.5em;
+  font-size: 1em;
+  outline: none;
+  margin-top: 1em;
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #444;
+  margin: 0;
+}
