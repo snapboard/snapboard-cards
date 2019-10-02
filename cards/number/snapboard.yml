@@ -18,6 +18,7 @@ inputs:
       title: Label
       key: 39ac62ba-01ab-485f-a8d1-0e053b5b344c
 providerId: snapboard
+valueKey: inputs.number
 hasData: false
 provider: stripe
 approved: false
