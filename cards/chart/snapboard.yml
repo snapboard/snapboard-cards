@@ -1,0 +1,21 @@
+id: kCqqHO7DPCv2sgKo9LKH
+version: 0.0.2
+auths: {}
+providerId: snapboard
+hasData: false
+safety: true
+public: false
+name: Chart
+lastSave: 1570848531925
+inputs:
+  fields:
+    - prop: data
+      title: Chart Data
+      key: data
+      required: true
+      type: text
+    - type: text
+      prop: labels
+      title: Labels
+      multi: true
+      key: labels
