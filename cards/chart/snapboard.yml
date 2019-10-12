@@ -15,11 +15,16 @@ inputs:
       default: Bar
       options:
         selectOptions:
-          - Bar
-          - Line
-          - Doughnut
-          - Funnel
-          - Radar
+          - label: Bar
+            value: bar
+          - label: Line
+            value: line
+          - label: Doughnut
+            value: doughnut
+          - label: Funnel
+            value: funnel
+          - label: Radar
+            value: radar
       type: select
     - title: Chart Data
       key: data
