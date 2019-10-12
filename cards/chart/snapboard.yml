@@ -15,8 +15,7 @@ inputs:
       type: text
       required: true
       caption: >-
-        Data your chart - [learn how to format
-        here](https://help.snapboard.io/article/12-intro-value-types)
+        Data your chart - <a href="#" data-beacon-article="5da1dd5d2c7d3a7e9ae26dc5">learn how to format here</a>
     - prop: labels
       title: Labels
       multi: true
