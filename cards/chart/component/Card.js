@@ -5,7 +5,7 @@ import isArray from 'lodash/isArray'
 import map from 'lodash/map'
 import keys from 'lodash/keys'
 import forEach from 'lodash/forEach'
-import Chart from '@snapboard/ui/Bar'
+import Chart from '@snapboard/ui/Chart'
 
 function ChartCard ({ inputs }) {
   const { data, type, labels, invert } = inputs || {}
@@ -13,7 +13,7 @@ function ChartCard ({ inputs }) {
   if (!normalized) return null
   if (invert) normalized = invertData(normalized)
   return (
-    <Chart data={normalized} type={type ? type.toLowerCase() : 'bar'} />
+    <Chart data={normalized} type={type || 'bar'} />
   )
 }
 

@@ -32,8 +32,8 @@ inputs:
       type: text
       required: true
       caption: >-
-        Data your chart - <a href="#"
-        data-beacon-article="5da1d0b62c7d3a7e9ae26d96">learn how to format
+        Data for your chart - <a href="#"
+        data-beacon-article="5da1d0b62c7d3a7e9ae26d96">learn how to use Chart Data
         card</a>
     - prop: labels
       title: Labels
