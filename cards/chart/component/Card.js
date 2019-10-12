@@ -13,7 +13,7 @@ function ChartCard ({ inputs }) {
   if (!normalized) return null
   if (invert) normalized = invertData(normalized)
   return (
-    <Chart data={normalized} type={type || 'bar'} />
+    <Chart data={normalized} type={type || 'bar'} options={{ legend: { display: !isArray(data) } }} />
   )
 }
 
