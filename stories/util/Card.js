@@ -8,9 +8,9 @@ const Container = styled.div`
 `
 
 const StyledCard = styled.div`
-	border: 1px solid #eee;
-	border-radius: 3px;
-	width: 100%;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  width: 100%;
   height: 100%;
   background: #fff;
   overflow: hidden;

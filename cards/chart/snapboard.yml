@@ -9,6 +9,13 @@ lastSave: 1570899302794
 providerId: snapboard
 inputs:
   fields:
+    - title: Chart Type
+      key: type
+      prop: type
+      default: Bar
+      options:
+        selectOptions: [Bar, Line, Doughnut, Funnel, Radar]
+      type: select
     - title: Chart Data
       key: data
       prop: data
