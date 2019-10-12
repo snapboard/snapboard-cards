@@ -3,12 +3,14 @@ import isObject from 'lodash/isObject'
 import isNumber from 'lodash/isNumber'
 import isArray from 'lodash/isArray'
 import map from 'lodash/map'
+import keys from 'lodash/keys'
 import forEach from 'lodash/forEach'
-import Chart from '@snapboard/ui/Chart'
+import Chart from '@snapboard/ui/Bar'
 
 function ChartCard ({ inputs }) {
-  const { data, type, labels, invert } = inputs
+  const { data, type, labels, invert } = inputs || {}
   let normalized = normalizeDataInput(data, labels)
+  if (!normalized) return null
   if (invert) normalized = invertData(normalized)
   return (
     <Chart data={normalized} type={type || 'bar'} />
@@ -18,7 +20,7 @@ function ChartCard ({ inputs }) {
 export default ChartCard
 
 function normalizeDataInput (data, labels) {
-  if (isArray(data) && labels) return { labels, datasets: [{ label: 'Series 1', data }] }
+  if (isArray(data)) return { labels: labels || map(data, (_, i) => `Label ${i + 1}`), datasets: [{ label: 'Series 1', data }] }
   if (isObject(data) && data.labels && data.datasets) return data
   if (isObject(data) && isArray(firstObjectItem(data)) && labels) return objectArrayDataInput(data, labels)
   if (isObject(data) && isObject(firstObjectItem(data))) return objectObjectDataInput(data)
@@ -27,7 +29,7 @@ function normalizeDataInput (data, labels) {
 }
 
 function objectObjectDataInput (data) {
-  const labels = Object.keys(data)
+  const labels = keys(data)
   const datasets = getAllDataSets(data)
   return {
     labels,
@@ -39,7 +41,7 @@ function objectObjectDataInput (data) {
 }
 
 function objectArrayDataInput (data, datasetLabels) {
-  const labels = Object.keys(data)
+  const labels = keys(data)
   return {
     labels,
     datasets: map(datasetLabels, (label, i) => ({
@@ -64,11 +66,12 @@ function getAllDataSets (data) {
 }
 
 function firstObjectItem (obj) {
-  return obj[Object.keys(obj)[0]]
+  if (!obj) return null
+  return obj[keys(obj)[0]]
 }
 
 function invertData (data) {
-  const { labels, datasets } = data
+  const { labels, datasets } = data || {}
   return {
     labels: map(datasets, ({ label }) => label),
     datasets: labels.map((label, i) => ({
@@ -77,14 +80,3 @@ function invertData (data) {
     })),
   }
 }
-
-// export const data = {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//   datasets: [{
-//     label: 'My First dataset',
-//     data: [65, 59, 80, 81, 56, 55, 40],
-//   }, {
-//     label: 'My Second dataset',
-//     data: [62, 81, 73, 64, 57, 60, 70],
-//   }],
-// }

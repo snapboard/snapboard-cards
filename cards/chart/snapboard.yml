@@ -1,21 +1,24 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.3
+version: 0.0.18
 auths: {}
-providerId: snapboard
 hasData: false
 safety: true
-public: false
+public: true
 name: Chart
-lastSave: 1570848531925
+lastSave: 1570899302794
+providerId: snapboard
 inputs:
   fields:
-    - prop: data
-      title: Chart Data
+    - title: Chart Data
       key: data
-      required: true
+      prop: data
       type: text
-    - type: text
-      prop: labels
+      required: true
+      caption: >-
+        Data your chart - [learn how to format
+        here](https://help.snapboard.io/article/12-intro-value-types)
+    - prop: labels
       title: Labels
       multi: true
       key: labels
+      type: text
