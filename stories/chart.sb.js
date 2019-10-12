@@ -44,7 +44,17 @@ storiesOf('Chart', module)
     )
   })
 
-  .add('Array only', () => {
+  .add('Array - no labels', () => {
+    const data = [10, 20]
+    const params = { inputs: { data } }
+    return (
+      <Card>
+        <Chart {...params} />
+      </Card>
+    )
+  })
+
+  .add('Array - with labels', () => {
     const data = [10, 20]
     const labels = ['Food', 'Beverage']
     const params = { inputs: { data, labels } }
