@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.20
+version: 0.0.21
 auths: {}
 hasData: false
 safety: true
@@ -14,7 +14,12 @@ inputs:
       prop: type
       default: Bar
       options:
-        selectOptions: [Bar, Line, Doughnut, Funnel, Radar]
+        selectOptions:
+          - Bar
+          - Line
+          - Doughnut
+          - Funnel
+          - Radar
       type: select
     - title: Chart Data
       key: data
