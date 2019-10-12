@@ -16,8 +16,7 @@ inputs:
       required: true
       caption: >-
         Data your chart - <a href="#"
-        data-beacon-article="5da1dd5d2c7d3a7e9ae26dc5">learn how to format
-        here</a>
+        data-beacon-article="5da1d0b62c7d3a7e9ae26d96">learn how to format card</a>
     - prop: labels
       title: Labels
       multi: true

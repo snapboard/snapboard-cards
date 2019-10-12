@@ -46,7 +46,8 @@ storiesOf('Chart', module)
 
   .add('Array - no labels', () => {
     const data = [10, 20]
-    const params = { inputs: { data } }
+    const labels = []
+    const params = { inputs: { data, labels } }
     return (
       <Card>
         <Chart {...params} />
