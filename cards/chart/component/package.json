@@ -1,8 +1,0 @@
-{
-  "name": "@snapboard/component-chart",
-  "version": "0.0.18",
-  "dependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
-  }
-}
