@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.18
+version: 0.0.19
 auths: {}
 hasData: false
 safety: true
@@ -15,7 +15,9 @@ inputs:
       type: text
       required: true
       caption: >-
-        Data your chart - <a href="#" data-beacon-article="5da1dd5d2c7d3a7e9ae26dc5">learn how to format here</a>
+        Data your chart - <a href="#"
+        data-beacon-article="5da1dd5d2c7d3a7e9ae26dc5">learn how to format
+        here</a>
     - prop: labels
       title: Labels
       multi: true
