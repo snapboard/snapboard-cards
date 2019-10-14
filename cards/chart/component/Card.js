@@ -4,6 +4,7 @@ import isNumber from 'lodash/isNumber'
 import isArray from 'lodash/isArray'
 import map from 'lodash/map'
 import keys from 'lodash/keys'
+import values from 'lodash/values'
 import forEach from 'lodash/forEach'
 import Chart from '@snapboard/ui/Chart'
 
@@ -12,8 +13,9 @@ function ChartCard ({ inputs }) {
   let normalized = normalizeDataInput(data, labels)
   if (!normalized) return null
   if (invert) normalized = invertData(normalized)
+  const hideLegend = normalized.datasets.length === 1 && normalized.datasets[0].label === 'Series 1'
   return (
-    <Chart data={normalized} type={type || 'bar'} options={{ legend: { display: !isArray(data) } }} />
+    <Chart data={normalized} type={type || 'bar'} options={{ legend: { display: !hideLegend } }} />
   )
 }
 
@@ -31,6 +33,12 @@ function normalizeDataInput (data, labels) {
   if (isObject(data) && data.labels && data.datasets) return data
   if (isObject(data) && isArray(firstObjectItem(data)) && labels) return objectArrayDataInput(data, labels)
   if (isObject(data) && isObject(firstObjectItem(data))) return objectObjectDataInput(data)
+  if (isObject(data) && isNumber(firstObjectItem(data))) {
+    return {
+      labels: keys(data),
+      datasets: [{ label: 'Series 1', data: values(data) }],
+    }
+  }
   // No understood format, so return an empty dataset
   return { labels: [], datasets: [] }
 }

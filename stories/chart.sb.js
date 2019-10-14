@@ -44,6 +44,21 @@ storiesOf('Chart', module)
     )
   })
 
+  .add('Object Values', () => {
+    const data = {
+      '2019-01-01': 10,
+      '2019-01-02': 20,
+      '2019-01-03': 30,
+    }
+    const labels = ['Food', 'Beverage']
+    const params = { inputs: { data, labels } }
+    return (
+      <Card>
+        <Chart {...params} />
+      </Card>
+    )
+  })
+
   .add('Array - no labels', () => {
     const data = [10, 20]
     const labels = []

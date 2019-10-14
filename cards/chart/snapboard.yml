@@ -40,3 +40,7 @@ inputs:
       multi: true
       key: labels
       type: text
+    - prop: invert
+      title: Invert
+      key: invert
+      type: bool
