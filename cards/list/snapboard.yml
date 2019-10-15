@@ -2,7 +2,7 @@ id: gCkcGI7qqAsIV4XdTiY1
 version: 0.0.3
 auths: {}
 safety: true
-public: false
+public: true
 name: List
 lastSave: 1571138252853
 providerId: snapboard
