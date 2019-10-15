@@ -2366,7 +2366,7 @@
     react-table "^6.10.0"
     recompose "^0.30.0"
 
-"@snapboard/ui@0.16.0":
+"@snapboard/ui@0.16.0", "@snapboard/ui@^0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@snapboard/ui/-/ui-0.16.0.tgz#22015ab273b05593da62e47335daba4350b89f0c"
   integrity sha512-u8/tOrrzRIHS/MISuUih2feIVC2gwUKzvH4i6CzoSZrg0u2dCOT8hN/sxVd7XuIg//+Jk88yJRh9X7lred73Kg==

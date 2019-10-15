@@ -1,1 +1,17 @@
-{"inputs":{},"data":{}}
+{
+  "inputs": {
+    "list": [
+      {
+        "title": "Hello World",
+        "image": "https://ichef.bbci.co.uk/news/240/cpsprodpb/15B79/production/_109235988_simples.jpg",
+        "desc": "With a desc",
+        "counter": 10
+      },
+      {
+        "title": "Goodbye World",
+        "image": "https://ichef.bbci.co.uk/news/240/cpsprodpb/15B79/production/_109235988_simples.jpg",
+        "counter": 20
+      }
+    ] 
+  }
+}
