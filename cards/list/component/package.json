@@ -1,7 +1,9 @@
 {
   "name": "@snapboard/component-list",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "dependencies": {
+    "react-dom": "16.8.6",
+    "react": "16.8.6",
     "@snapboard/ui": "^0.16.0"
   }
 }

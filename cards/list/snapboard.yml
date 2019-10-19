@@ -1,12 +1,9 @@
 id: gCkcGI7qqAsIV4XdTiY1
-version: 0.0.6
+version: 0.0.8
 auths: {}
-safety: true
-public: true
 name: List
-lastSave: 1571138252853
+lastSave: 1571481497374
 providerId: snapboard
-hasData: false
 inputs:
   fields:
     - title: List
@@ -18,7 +15,10 @@ inputs:
         Data for your list - <a href="#"
         data-beacon-article="5da5ae5a2c7d3a7e9ae2871c">learn how to use List
         card</a>
-    - prop: compact
+    - type: bool
+      prop: compact
       title: Compact
       key: compact
-      type: bool
+hasData: false
+safety: true
+public: true
