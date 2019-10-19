@@ -1,6 +1,6 @@
 {
   "name": "@snapboard/component-grid",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "dependencies": {
     "@snapboard/grid": "^0.39.0",
     "lodash": "4.17.15",

@@ -1,6 +1,6 @@
 {
   "name": "@snapboard/component-list",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "@snapboard/ui": "^0.16.0"
   }
