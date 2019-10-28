@@ -12,9 +12,9 @@ inputs:
   derived:
     data: '=sum($inputs.num1, $inputs.num2)'
   fields:
-    - title: Number 1
+    - title: Sum 1
       key: type
       prop: num1
-    - title: Number 2
+    - title: Sum 2
       key: type
       prop: num2
