@@ -8,9 +8,9 @@ hasData: false
 safety: true
 desc: Used to test new features for cards!
 public: false
-derivied:
-  data: 'sum($_num1, $_num2)'
 inputs:
+  derivied:
+    data: 'sum($_num1, $_num2)'
   fields:
     - title: Number 1
       key: type
