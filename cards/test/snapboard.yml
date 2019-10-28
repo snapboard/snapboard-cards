@@ -1,5 +1,5 @@
 id: Y4RJKwz1HoVRudy7FHi5
-version: 0.0.2
+version: 0.0.3
 auths: {}
 name: Test
 lastSave: 1572256182891
@@ -9,7 +9,7 @@ safety: true
 desc: Used to test new features for cards!
 public: false
 derivied:
-  data: sum($_num1, $_num2)
+  data: 'sum($_num1, $_num2)'
 inputs:
   fields:
     - title: Number 1
