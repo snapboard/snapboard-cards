@@ -10,7 +10,7 @@ desc: Used to test new features for cards!
 public: false
 inputs:
   derivied:
-    data: 'sum($_num1, $_num2)'
+    data: 'sum($inputs.num1, $inputs.num2)'
   fields:
     - title: Number 1
       key: type
