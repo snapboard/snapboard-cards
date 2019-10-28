@@ -9,8 +9,8 @@ safety: true
 desc: Used to test new features for cards!
 public: false
 inputs:
-  derivied:
-    data: 'sum($inputs.num1, $inputs.num2)'
+  derived:
+    data: '=sum($inputs.num1, $inputs.num2)'
   fields:
     - title: Number 1
       key: type
