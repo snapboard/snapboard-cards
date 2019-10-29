@@ -7,62 +7,64 @@ public: true
 name: Chart
 lastSave: 1570899302794
 providerId: snapboard
-derived:
-  data: |-
-    =Switch(
-      $inputs.xaxis,
-      'auto', $inputs.source,
-      'date', (
-        Switch(
-          $inputs.aggregation,
-          'count', (
-            CountByGroup(
-              Filter(
-                $inputs.source,
-                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
-              ),
-              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date)))
-            )
-          ),
-          'sum', (
-            SumByGroup(
-              Filter(
-                $inputs.source,
-                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
-              ),
-              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-              $inputs.aggregator
-            )
-          ),
-          'min', (
-            MinByGroup(
-              Filter(
-                $inputs.source,
-                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
-              ),
-              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-              $inputs.aggregator
-            )
-          ),
-          'max', (
-            MaxByGroup(
-              Filter(
-                $inputs.source,
-                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
-              ),
-              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-              $inputs.aggregator
+
+inputs:
+  derived:
+    data: |-
+      =Switch(
+        $inputs.xaxis,
+        'auto', $inputs.source,
+        'date', (
+          Switch(
+            $inputs.aggregation,
+            'count', (
+              CountByGroup(
+                Filter(
+                  $inputs.source,
+                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                ),
+                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date)))
+              )
+            ),
+            'sum', (
+              SumByGroup(
+                Filter(
+                  $inputs.source,
+                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                ),
+                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+                $inputs.aggregator
+              )
+            ),
+            'min', (
+              MinByGroup(
+                Filter(
+                  $inputs.source,
+                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                ),
+                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+                $inputs.aggregator
+              )
+            ),
+            'max', (
+              MaxByGroup(
+                Filter(
+                  $inputs.source,
+                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                ),
+                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+                $inputs.aggregator
+              )
             )
           )
         )
       )
-    )
-inputs:
+
   fields:
     - title: Chart Type
       key: type
       prop: type
-      default: Bar
+      default: bar
       options:
         selectOptions:
           - label: Bar
