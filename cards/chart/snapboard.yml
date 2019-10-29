@@ -11,48 +11,48 @@ inputs:
   derived:
     data: |-
       =Switch(
-        $inputs.xaxis,
-        'auto', $inputs.source,
+        $inputs.data.xaxis,
+        'auto', $inputs.data.source,
         'date', (
           Switch(
-            $inputs.aggregation,
+            $inputs.data.yaxis,
             'count', (
               CountByGroup(
                 Filter(
-                  $inputs.source,
-                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                  $inputs.data.source,
+                  IsWithin(ToDate(Get($value, $inputs.data.date)), $inputs.data.period.count, $inputs.data.period.unit)
                 ),
-                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date)))
+                If($inputs.data.groupby, StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(Get($value, $inputs.data.date)))
               )
             ),
             'sum', (
               SumByGroup(
                 Filter(
-                  $inputs.source,
-                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                  $inputs.data.source,
+                  IsWithin(ToDate(Get($value, $inputs.data.date)), $inputs.data.period.count, $inputs.data.period.unit)
                 ),
-                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-                $inputs.aggregator
+                If($inputs.data.groupby, StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(Get($value, $inputs.data.date))),
+                $inputs.data.aggregate
               )
             ),
             'min', (
               MinByGroup(
                 Filter(
-                  $inputs.source,
-                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                  $inputs.data.source,
+                  IsWithin(ToDate(Get($value, $inputs.data.date)), $inputs.data.period.count, $inputs.data.period.unit)
                 ),
-                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-                $inputs.aggregator
+                If($inputs.data.groupby, StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(Get($value, $inputs.data.date))),
+                $inputs.data.aggregate
               )
             ),
             'max', (
               MaxByGroup(
                 Filter(
-                  $inputs.source,
-                  IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+                  $inputs.data.source,
+                  IsWithin(ToDate(Get($value, $inputs.data.date)), $inputs.data.period.count, $inputs.data.period.unit)
                 ),
-                If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
-                $inputs.aggregator
+                If($inputs.data.groupby, StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(Get($value, $inputs.data.date))),
+                $inputs.data.aggregate
               )
             )
           )
