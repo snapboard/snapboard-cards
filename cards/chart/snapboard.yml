@@ -115,7 +115,7 @@ inputs:
                       type: text
                       placeholder: No.
                       default: '14'
-                    period:
+                    unit:
                       title: Period
                       type: select
                       placeholder: Select a time period...
@@ -141,7 +141,7 @@ inputs:
                   type: text
                   placeholder: Name of field
                   caption: The name of the field in source to use as the date
-                yxais:
+                yaxis:
                   title: Y-Axis
                   type: select
                   placeholder: Select aggregation type
