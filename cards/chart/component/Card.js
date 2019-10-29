@@ -1,25 +1,71 @@
 import React from 'react'
+import dayjs from 'dayjs'
+import find from 'lodash/find'
 import isObject from 'lodash/isObject'
 import isNumber from 'lodash/isNumber'
 import isArray from 'lodash/isArray'
 import map from 'lodash/map'
+import range from 'lodash/range'
 import keys from 'lodash/keys'
 import values from 'lodash/values'
 import forEach from 'lodash/forEach'
 import Chart from '@snapboard/ui/Chart'
 
+const periodFormat = {
+  minute: 'HH:MM',
+  hour: 'DD HH:MM',
+  day: 'DD-MM-YY',
+  week: 'YYYY-MM-DD',
+  month: 'MMM-YY',
+  quater: 'MMM-YY',
+  year: 'YYYY',
+}
+
 function ChartCard ({ inputs }) {
-  const { data, type, labels, invert } = inputs || {}
-  let normalized = normalizeDataInput(data, labels)
+  const { data, type, labels, invert, xaxis, period } = inputs || {}
+  let normalized = xaxis === 'date'
+    ? normalizeDateInput(data, period)
+    : normalizeDataInput(data, labels)
   if (!normalized) return null
   if (invert) normalized = invertData(normalized)
-  const hideLegend = normalized.datasets.length === 1 && normalized.datasets[0].label === 'Series 1'
+  // if (xaxis === 'date') normalized.labels = getDateLabels(period)
+  const hideLegend = normalized.datasets.length === 1 &&
+    normalized.datasets[0].label === 'Series 1'
   return (
-    <Chart data={normalized} type={type || 'bar'} options={{ legend: { display: !hideLegend } }} />
+    <Chart
+      data={normalized}
+      type={type || 'bar'}
+      options={{ legend: { display: !hideLegend } }}
+    />
   )
 }
 
 export default ChartCard
+
+function getDateLabels ({ count, unit }) {
+  return map(getDates({ count, unit }), date => formatDate(date, unit))
+}
+
+function getDates ({ count, unit }) {
+  const now = new Date()
+  return map(range(count), (i) => {
+    return dayjs(now).startOf(unit).subtract(i, unit)
+  }).reverse()
+}
+
+function formatDate (date, periodUnit) {
+  return dayjs(date).format(periodFormat[periodUnit || 'day'])
+}
+
+function normalizeDateInput (data, period) {
+  if (isArray(data)) return normalizeDataInput(data, getDateLabels(period))
+  const datesObj = {}
+  forEach(getDates(period), (date) => {
+    const match = find(Object.keys(data), key => dayjs(parseDate(key)).isSame(date, period.unit))
+    datesObj[formatDate(date, period.unit)] = data[match] ? data[match] : (isObject(firstObjectItem(data)) ? {} : 0)
+  })
+  return normalizeDataInput(datesObj, getDateLabels(period))
+}
 
 function normalizeDataInput (data, labels) {
   if (isArray(data)) {
@@ -30,6 +76,7 @@ function normalizeDataInput (data, labels) {
       datasets: [{ label: 'Series 1', data }],
     }
   }
+  // TODO: an array of objects should work!
   if (isObject(data) && data.labels && data.datasets) return data
   if (isObject(data) && isArray(firstObjectItem(data)) && labels) return objectArrayDataInput(data, labels)
   if (isObject(data) && isObject(firstObjectItem(data))) return objectObjectDataInput(data)
@@ -94,4 +141,11 @@ function invertData (data) {
       data: map(datasets, ({ data }) => data[i]),
     })),
   }
+}
+
+function parseDate (d) {
+  const date = new Date(d)
+  if (!isNaN(date.getTime())) return dayjs(d)
+  else if (!isNaN(parseFloat(d))) return dayjs(parseFloat(d))
+  return dayjs(d)
 }

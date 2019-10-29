@@ -100,7 +100,12 @@ inputs:
               # - label: Field
               #   value: field
           switch:
-            auto: {}
+            auto:
+              fields:
+                labels:
+                  title: Labels
+                  multi: true
+                  type: text
             date:
               fields:
                 period:
