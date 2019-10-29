@@ -76,24 +76,6 @@ inputs:
           - label: Radar
             value: radar
       type: select
-    - title: Chart Data
-      key: data
-      prop: data
-      type: text
-      required: true
-      caption: >-
-        Data for your chart - <a href="#"
-        data-beacon-article="5da1d0b62c7d3a7e9ae26d96">learn how to use Chart
-        Data card</a>
-    - prop: labels
-      title: Labels
-      multi: true
-      key: labels
-      type: text
-    - prop: invert
-      title: Invert
-      key: invert
-      type: bool
   tabs:
     data:
       title: Data
@@ -103,6 +85,10 @@ inputs:
           title: Source
           caption: 'A reference, object or list of data'
           required: true
+          caption: >-
+        Data for your chart - <a href="#"
+        data-beacon-article="5da1d0b62c7d3a7e9ae26d96">learn how to use Chart
+        Data card</a>
         xaxis:
           type: select
           title: X-Axis
