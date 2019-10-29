@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.32
+version: 0.0.33
 auths: {}
 hasData: false
 safety: true
@@ -97,8 +97,6 @@ inputs:
                 value: auto
               - label: Date
                 value: date
-              # - label: Field
-              #   value: field
           switch:
             auto:
               fields:
