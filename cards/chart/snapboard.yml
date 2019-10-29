@@ -9,6 +9,8 @@ lastSave: 1570899302794
 providerId: snapboard
 inputs:
   derived:
+    xaxis: $inputs.data.xaxis
+    period: $inputs.data.period
     data: |-
       =Switch(
         $inputs.data.xaxis,
