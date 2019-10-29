@@ -7,6 +7,56 @@ public: true
 name: Chart
 lastSave: 1570899302794
 providerId: snapboard
+derived: 
+  data: >-
+    =Switch(
+      $inputs.xaxis,
+      'auto', $inputs.source,
+      'date', (
+        Switch(
+          $inputs.aggregation,
+          'count', (
+            CountByGroup(
+              Filter(
+                $inputs.source,
+                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+              ),
+              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date)))
+            )
+          ),
+          'sum', (
+            SumByGroup(
+              Filter(
+                $inputs.source,
+                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+              ),
+              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+              $inputs.aggregator
+            )
+          ),
+          'min', (
+            MinByGroup(
+              Filter(
+                $inputs.source,
+                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+              ),
+              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+              $inputs.aggregator
+            )
+          ),
+          'max', (
+            MaxByGroup(
+              Filter(
+                $inputs.source,
+                IsWithin(ToDate(Get($value, $inputs.date)), $inputs.period.count, $inputs.period.unit)
+              ),
+              If($inputs.groupby, StartOf(Get($value, $inputs.date), $inputs.period.unit) & '.' & Get($value, $inputs.groupby), StartOf(Get($value, $inputs.date))),
+              $inputs.aggregator
+            )
+          )
+        )
+      )
+    )
 inputs:
   fields:
     - title: Chart Type
@@ -44,3 +94,120 @@ inputs:
       title: Invert
       key: invert
       type: bool
+  tabs:
+    data:
+      title: Data
+      fields:
+        source:
+          type: formula
+          title: Source
+          caption: A reference, object or list of data
+          required: true
+        xaxis:
+          type: select
+          title: X-Axis
+          default: date
+          options:
+            selectOptions:
+            - label: Auto
+              value: auto
+            - label: Date
+              value: date
+            - label: Field
+              value: field
+          switch:
+            auto: {}
+            date:
+              fields:
+                period:
+                  title: Period
+                  type: inline
+                  required: true
+                  options:
+                    widths:
+                    - 20
+                    - 80
+                  fields:
+                    count:
+                      title: Count
+                      type: text
+                      placeholder: No.
+                      default: '14'
+                    period:
+                      title: Period
+                      type: select
+                      placeholder: Select a time period...
+                      default: day
+                      options:
+                        selectOptions:
+                        - label: Minutes
+                          value: minute
+                        - label: Hours
+                          value: hour
+                        - label: Days
+                          value: day
+                        - label: Weeks
+                          value: week
+                        - label: Months
+                          value: month
+                        - label: Quaters
+                          value: quater
+                        - label: Years
+                          value: year
+                date:
+                  title: Date Field
+                  type: text
+                  placeholder: Name of field
+                  caption: The name of the field in source to use as the date
+                yxais:
+                  title: Y-Axis
+                  type: select
+                  placeholder: Select aggregation type
+                  default: count
+                  options:
+                    selectOptions:
+                    - label: Count
+                      value: count
+                    - label: Sum
+                      value: sum
+                    - label: Min
+                      value: min
+                    - label: Max
+                      value: max
+                    # - label: Average (Mean)
+                    #   value: average
+                  switch:
+                    count: {}
+                    sum:
+                      fields:
+                        aggregate:
+                          title: Sum Field
+                          type: text
+                          placeholder: Name of field
+                          caption: The field or expression used to sum values
+                    min:
+                      fields:
+                        aggregate:
+                          title: Min Field
+                          type: text
+                          placeholder: Name of field
+                          caption: The field or expression used to min value
+                    max:
+                      fields:
+                        aggregate:
+                          title: Max Field
+                          type: text
+                          placeholder: Name of field
+                          caption: The field or expression used to max value
+                    # average:
+                    #   fields:
+                    #     aggregate:
+                    #       title: Average Field
+                    #       type: text
+                    #       placeholder: Name of field
+                    #       caption: The field or expression used for to get average value
+                groupby:
+                  title: GroupBy
+                  type: text
+                  placeholder: Name of field
+                  caption: The name of the field in source to group records by
