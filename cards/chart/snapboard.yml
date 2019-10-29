@@ -9,8 +9,8 @@ lastSave: 1570899302794
 providerId: snapboard
 inputs:
   derived:
-    xaxis: $inputs.data.xaxis
-    period: $inputs.data.period
+    xaxis: =$inputs.data.xaxis
+    period: =$inputs.data.period
     data: |-
       =Switch(
         $inputs.data.xaxis,
@@ -85,12 +85,12 @@ inputs:
         source:
           type: formula
           title: Source
-          caption: 'A reference, object or list of data'
+          caption: 'A reference, hash or list of data'
           required: true
         xaxis:
           type: select
           title: X-Axis
-          default: date
+          default: auto
           options:
             selectOptions:
               - label: Auto
