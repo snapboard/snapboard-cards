@@ -7,8 +7,8 @@ public: true
 name: Chart
 lastSave: 1570899302794
 providerId: snapboard
-derived: 
-  data: >-
+derived:
+  data: |-
     =Switch(
       $inputs.xaxis,
       'auto', $inputs.source,
@@ -101,7 +101,7 @@ inputs:
         source:
           type: formula
           title: Source
-          caption: A reference, object or list of data
+          caption: 'A reference, object or list of data'
           required: true
         xaxis:
           type: select
@@ -109,12 +109,12 @@ inputs:
           default: date
           options:
             selectOptions:
-            - label: Auto
-              value: auto
-            - label: Date
-              value: date
-            - label: Field
-              value: field
+              - label: Auto
+                value: auto
+              - label: Date
+                value: date
+              - label: Field
+                value: field
           switch:
             auto: {}
             date:
@@ -125,8 +125,8 @@ inputs:
                   required: true
                   options:
                     widths:
-                    - 20
-                    - 80
+                      - 20
+                      - 80
                   fields:
                     count:
                       title: Count
@@ -140,20 +140,20 @@ inputs:
                       default: day
                       options:
                         selectOptions:
-                        - label: Minutes
-                          value: minute
-                        - label: Hours
-                          value: hour
-                        - label: Days
-                          value: day
-                        - label: Weeks
-                          value: week
-                        - label: Months
-                          value: month
-                        - label: Quaters
-                          value: quater
-                        - label: Years
-                          value: year
+                          - label: Minutes
+                            value: minute
+                          - label: Hours
+                            value: hour
+                          - label: Days
+                            value: day
+                          - label: Weeks
+                            value: week
+                          - label: Months
+                            value: month
+                          - label: Quaters
+                            value: quater
+                          - label: Years
+                            value: year
                 date:
                   title: Date Field
                   type: text
@@ -166,16 +166,14 @@ inputs:
                   default: count
                   options:
                     selectOptions:
-                    - label: Count
-                      value: count
-                    - label: Sum
-                      value: sum
-                    - label: Min
-                      value: min
-                    - label: Max
-                      value: max
-                    # - label: Average (Mean)
-                    #   value: average
+                      - label: Count
+                        value: count
+                      - label: Sum
+                        value: sum
+                      - label: Min
+                        value: min
+                      - label: Max
+                        value: max
                   switch:
                     count: {}
                     sum:
@@ -199,13 +197,6 @@ inputs:
                           type: text
                           placeholder: Name of field
                           caption: The field or expression used to max value
-                    # average:
-                    #   fields:
-                    #     aggregate:
-                    #       title: Average Field
-                    #       type: text
-                    #       placeholder: Name of field
-                    #       caption: The field or expression used for to get average value
                 groupby:
                   title: GroupBy
                   type: text
