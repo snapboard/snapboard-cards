@@ -97,8 +97,8 @@ inputs:
                 value: auto
               - label: Date
                 value: date
-              - label: Field
-                value: field
+              # - label: Field
+              #   value: field
           switch:
             auto: {}
             date:
