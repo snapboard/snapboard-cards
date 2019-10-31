@@ -106,7 +106,7 @@ inputs:
                   type: text
             date:
               fields:
-                period:
+                - prop: period
                   title: Period
                   type: inline
                   required: true
@@ -141,12 +141,12 @@ inputs:
                             value: quater
                           - label: Years
                             value: year
-                date:
+                - prop: date
                   title: Date Field
                   type: text
                   placeholder: Name of field
                   caption: The name of the field in source to use as the date
-                yaxis:
+                - prop: yaxis
                   title: Y-Axis
                   type: select
                   placeholder: Select aggregation type
@@ -169,23 +169,23 @@ inputs:
                           title: Sum Field
                           type: text
                           placeholder: Name of field
-                          caption: The field or expression used to sum values
+                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is added together.
                     min:
                       fields:
                         aggregate:
                           title: Min Field
                           type: text
                           placeholder: Name of field
-                          caption: The field or expression used to min value
+                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is compared, and the smallest row value is used.
                     max:
                       fields:
                         aggregate:
                           title: Max Field
                           type: text
                           placeholder: Name of field
-                          caption: The field or expression used to max value
-                groupby:
+                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is compared, and the largest row value is used.
+                - prop: groupby
                   title: GroupBy
                   type: text
                   placeholder: Name of field
-                  caption: The name of the field in source to group records by
+                  caption: Formula is calculated for every row in `Source` (you can use any fields in source). 

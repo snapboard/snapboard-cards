@@ -50,8 +50,7 @@ storiesOf('Chart', module)
       '2019-01-02': 20,
       '2019-01-03': 30,
     }
-    const labels = ['Food', 'Beverage']
-    const params = { inputs: { data, labels } }
+    const params = { inputs: { data } }
     return (
       <Card>
         <Chart {...params} />
