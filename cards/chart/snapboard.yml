@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.25
+version: 0.0.34
 auths: {}
 hasData: false
 safety: true
@@ -169,23 +169,34 @@ inputs:
                           title: Sum Field
                           type: text
                           placeholder: Name of field
-                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is added together.
+                          caption: >-
+                            Formula is calculated for every row in `Source` (you
+                            can use any fields in source). Each row's output is
+                            added together.
                     min:
                       fields:
                         aggregate:
                           title: Min Field
                           type: text
                           placeholder: Name of field
-                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is compared, and the smallest row value is used.
+                          caption: >-
+                            Formula is calculated for every row in `Source` (you
+                            can use any fields in source). Each row's output is
+                            compared, and the smallest row value is used.
                     max:
                       fields:
                         aggregate:
                           title: Max Field
                           type: text
                           placeholder: Name of field
-                          caption: Formula is calculated for every row in `Source` (you can use any fields in source). Each row's output is compared, and the largest row value is used.
+                          caption: >-
+                            Formula is calculated for every row in `Source` (you
+                            can use any fields in source). Each row's output is
+                            compared, and the largest row value is used.
                 - prop: groupby
                   title: GroupBy
                   type: text
                   placeholder: Name of field
-                  caption: Formula is calculated for every row in `Source` (you can use any fields in source). 
+                  caption: >-
+                    Formula is calculated for every row in `Source` (you can use
+                    any fields in source).
