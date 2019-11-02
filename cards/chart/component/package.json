@@ -1,6 +1,6 @@
 {
   "name": "@snapboard/component-chart",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "dependencies": {
     "@snapboard/ui": "0.16.0",
     "date-fns": "^2.6.0",

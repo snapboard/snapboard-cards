@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.37
+version: 0.0.38
 auths: {}
 hasData: false
 safety: true
@@ -180,8 +180,8 @@ inputs:
                           placeholder: Name of field
                           caption: >-
                             Formula is calculated for every row in `Source` (you
-                            can use any fields in `Source`). Each row's output is
-                            added together.
+                            can use any fields in `Source`). Each row's output
+                            is added together.
                     min:
                       fields:
                         aggregate:
