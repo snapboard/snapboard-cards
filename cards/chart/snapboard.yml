@@ -146,12 +146,14 @@ inputs:
                   type: text
                   placeholder: Name of field
                   caption: >-
-                    The name of the field in source to use as the date, or a
-                    formula that returns a date
+                    The name of the field in `source` to use as the date, or a
+                    formula that returns a date.
                 - prop: yaxis
                   title: Y-Axis
                   type: select
                   placeholder: Select aggregation type
+                  caption: >-
+                    When we group values in `source` by date, how should we combine their value.
                   default: count
                   options:
                     selectOptions:
