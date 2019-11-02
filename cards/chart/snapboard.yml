@@ -1,5 +1,5 @@
 id: kCqqHO7DPCv2sgKo9LKH
-version: 0.0.36
+version: 0.0.37
 auths: {}
 hasData: false
 safety: true
@@ -153,7 +153,8 @@ inputs:
                   type: select
                   placeholder: Select aggregation type
                   caption: >-
-                    When we group values in `source` by date, how should we combine their value.
+                    When we group values in `source` by date, how should we
+                    combine their value.
                   default: count
                   options:
                     selectOptions:
