@@ -22,7 +22,7 @@ inputs:
               CountByGroup(
                 Filter(
                   $inputs.data.source,
-                  IsWithin(ToDate(Get($value, $inputs.data.date)), $inputs.data.period.count, $inputs.data.period.unit)
+                  IsWithin(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.count, $inputs.data.period.unit)
                 ),
                 If($inputs.data.groupby, StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(Get($value, $inputs.data.date), $inputs.data.period.unit))
               )
