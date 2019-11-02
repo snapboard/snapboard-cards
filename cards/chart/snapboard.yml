@@ -12,49 +12,53 @@ inputs:
     xaxis: =$inputs.data.xaxis
     period: =$inputs.data.period
     data: |-
-      =Switch(
-        $inputs.data.xaxis,
-        'auto', $inputs.data.source,
-        'date', (
-          Switch(
-            $inputs.data.yaxis,
-            'count', (
-              CountByGroup(
-                Filter(
-                  $inputs.data.source,
-                  IsWithin(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.count, $inputs.data.period.unit)
-                ),
-                If($inputs.data.groupby, StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit))
-              )
-            ),
-            'sum', (
-              SumByGroup(
-                Filter(
-                  $inputs.data.source,
-                  IsWithin(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.count, $inputs.data.period.unit)
-                ),
-                If($inputs.data.groupby, StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit)),
-                $inputs.data.aggregate
-              )
-            ),
-            'min', (
-              MinByGroup(
-                Filter(
-                  $inputs.data.source,
-                  IsWithin(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.count, $inputs.data.period.unit)
-                ),
-                If($inputs.data.groupby, StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit)),
-                $inputs.data.aggregate
-              )
-            ),
-            'max', (
-              MaxByGroup(
-                Filter(
-                  $inputs.data.source,
-                  IsWithin(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.count, $inputs.data.period.unit)
-                ),
-                If($inputs.data.groupby, StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf(ToDate(If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date))), $inputs.data.period.unit)),
-                $inputs.data.aggregate
+      =Stash(
+        '$date',
+        If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date)),
+        Switch(
+          $inputs.data.xaxis,
+          'auto', $inputs.data.source,
+          'date', (
+            Switch(
+              $inputs.data.yaxis,
+              'count', (
+                CountByGroup(
+                  Filter(
+                    $inputs.data.source,
+                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                  ),
+                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit))
+                )
+              ),
+              'sum', (
+                SumByGroup(
+                  Filter(
+                    $inputs.data.source,
+                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                  ),
+                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
+                  $inputs.data.aggregate
+                )
+              ),
+              'min', (
+                MinByGroup(
+                  Filter(
+                    $inputs.data.source,
+                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                  ),
+                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
+                  $inputs.data.aggregate
+                )
+              ),
+              'max', (
+                MaxByGroup(
+                  Filter(
+                    $inputs.data.source,
+                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                  ),
+                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
+                  $inputs.data.aggregate
+                )
               )
             )
           )
@@ -146,14 +150,14 @@ inputs:
                   type: text
                   placeholder: Name of field
                   caption: >-
-                    The name of the field in `source` to use as the date, or a
+                    The name of the field in `Source` to use as the date, or a
                     formula that returns a date.
                 - prop: yaxis
                   title: Y-Axis
                   type: select
                   placeholder: Select aggregation type
                   caption: >-
-                    When we group values in `source` by date, how should we
+                    When we group values in `Source` by date, how should we
                     combine their value.
                   default: count
                   options:
@@ -176,7 +180,7 @@ inputs:
                           placeholder: Name of field
                           caption: >-
                             Formula is calculated for every row in `Source` (you
-                            can use any fields in source). Each row's output is
+                            can use any fields in `Source`). Each row's output is
                             added together.
                     min:
                       fields:
