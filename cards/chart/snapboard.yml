@@ -15,49 +15,53 @@ inputs:
       =Stash(
         '$date',
         If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date)),
-        Switch(
-          $inputs.data.xaxis,
-          'auto', $inputs.data.source,
-          'date', (
-            Switch(
-              $inputs.data.yaxis,
-              'count', (
-                CountByGroup(
-                  Filter(
-                    $inputs.data.source,
-                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
-                  ),
-                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit))
-                )
-              ),
-              'sum', (
-                SumByGroup(
-                  Filter(
-                    $inputs.data.source,
-                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
-                  ),
-                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
-                  $inputs.data.aggregate
-                )
-              ),
-              'min', (
-                MinByGroup(
-                  Filter(
-                    $inputs.data.source,
-                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
-                  ),
-                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
-                  $inputs.data.aggregate
-                )
-              ),
-              'max', (
-                MaxByGroup(
-                  Filter(
-                    $inputs.data.source,
-                    IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
-                  ),
-                  If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
-                  $inputs.data.aggregate
+        Stash(
+          '$groupby',
+          If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
+          Switch(
+            $inputs.data.xaxis,
+            'auto', $inputs.data.source,
+            'date', (
+              Switch(
+                $inputs.data.yaxis,
+                'count', (
+                  CountByGroup(
+                    Filter(
+                      $inputs.data.source,
+                      IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                    ),
+                    $groupby
+                  )
+                ),
+                'sum', (
+                  SumByGroup(
+                    Filter(
+                      $inputs.data.source,
+                      IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                    ),
+                    $groupby,
+                    $inputs.data.aggregate
+                  )
+                ),
+                'min', (
+                  MinByGroup(
+                    Filter(
+                      $inputs.data.source,
+                      IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                    ),
+                    $groupby,
+                    $inputs.data.aggregate
+                  )
+                ),
+                'max', (
+                  MaxByGroup(
+                    Filter(
+                      $inputs.data.source,
+                      IsWithin($date, $inputs.data.period.count, $inputs.data.period.unit)
+                    ),
+                    $groupby,
+                    $inputs.data.aggregate
+                  )
                 )
               )
             )
