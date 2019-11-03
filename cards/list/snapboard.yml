@@ -52,9 +52,9 @@ inputs:
             added to title, image and desc area.
           toggle: true
           defaultValue: link
-        - prop: counter
+        - prop: count
           type: text
-          title: Counter
+          title: Count
           caption: A field in `Source` or formula to use as count displayed on the card
           toggle: true
           defaultValue: link
