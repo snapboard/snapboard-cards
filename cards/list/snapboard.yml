@@ -11,9 +11,9 @@ inputs:
         $inputs.list, 
         Map($inputs.source, { 
           title: ContextValue($inputs.data.title),
-          desc: ContextValue($inputs.data.desc),
-          image: ContextValue($inputs.data.desc),
-          link: ContextValue($inputs.data.link)
+          desc: If($inputs.data.desc.toggled, ContextValue($inputs.data.desc.value)),
+          image: If($inputs.data.image.toggled, ContextValue($inputs.data.image.value)),
+          link: If($inputs.data.link.toggled, ContextValue($inputs.data.link.value))
         })
       )
     source: null
