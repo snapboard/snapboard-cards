@@ -23,7 +23,7 @@ inputs:
             'auto', $inputs.data.source,
             'date', (
               Switch(
-                $inputs.data.yaxis OR 'count',
+                $inputs.data.yaxis,
                 'count', (
                   CountByGroup(
                     Filter(
