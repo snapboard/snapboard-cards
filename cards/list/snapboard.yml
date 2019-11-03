@@ -7,8 +7,9 @@ providerId: snapboard
 inputs:
   derived:
     list: |-
-      =If($inputs.list, 
+      =If(
         $inputs.list, 
+        $inputs.list,
         Map($inputs.source, { 
           title: ContextValue($inputs.data.title),
           desc: If($inputs.data.desc.toggled, ContextValue($inputs.data.desc.value)),
