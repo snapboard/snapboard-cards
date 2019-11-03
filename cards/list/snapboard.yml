@@ -1,5 +1,5 @@
 id: gCkcGI7qqAsIV4XdTiY1
-version: 0.0.10
+version: 0.0.11
 auths: {}
 name: List
 lastSave: 1571481497374
@@ -54,9 +54,7 @@ inputs:
         counter:
           type: text
           title: Counter
-          caption: >-
-            A field in `Source` or formula to use as count displayed on the
-            card
+          caption: A field in `Source` or formula to use as count displayed on the card
           toggle: true
           defaultValue: link
     options:
@@ -66,8 +64,8 @@ inputs:
           type: bool
           title: Compact
           caption: >-
-            Minimize the size of each list item, so more are visible at the
-            same time.
+            Minimize the size of each list item, so more are visible at the same
+            time.
 hasData: false
 safety: true
 public: true
