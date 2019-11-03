@@ -14,7 +14,8 @@ inputs:
           title: ContextValue($inputs.data.title),
           desc: If($inputs.data.desc.toggled, ContextValue($inputs.data.desc.value)),
           image: If($inputs.data.image.toggled, ContextValue($inputs.data.image.value)),
-          link: If($inputs.data.link.toggled, ContextValue($inputs.data.link.value))
+          link: If($inputs.data.link.toggled, ContextValue($inputs.data.link.value)),
+          count: If($inputs.data.count.toggled, ContextValue($inputs.data.count.value))
         })
       )
     source: true
