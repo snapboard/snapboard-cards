@@ -26,23 +26,23 @@ inputs:
     data:
       title: Display
       fields:
-        title:
+        - prop: title
           type: text
           title: Title
           caption: A field in `Source` or formula that returns a title string.
           defaultValue: title
-        desc:
+        - prop: desc
           type: text
           title: Desc
           caption: A field in `Source` or formula that returns a desc string.
           toggle: true
           defaultValue: desc
-        image:
+        - prop: image
           type: text
           title: Image
           caption: A field in `Source` or formula that returns an image URL.
           toggle: true
-        link:
+        - prop: link
           type: text
           title: Link
           caption: >-
@@ -51,7 +51,7 @@ inputs:
                           to title, image and desc area.
           toggle: true
           defaultValue: link
-        counter:
+        - prop: counter
           type: text
           title: Counter
           caption: A field in `Source` or formula to use as count displayed on the card
