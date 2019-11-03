@@ -17,7 +17,7 @@ inputs:
         If(IsFormula($inputs.data.date), $inputs.data.date, Get($value, $inputs.data.date)),
         Stash(
           '$groupby',
-          If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & Get($value, $inputs.data.groupby), StartOf($date, $inputs.data.period.unit)),
+          If($inputs.data.groupby, StartOf($date, $inputs.data.period.unit) & '.' & If(IsFormula($inputs.data.groupby), $inputs.data.groupby, Get($value, $inputs.data.groupby)), StartOf($date, $inputs.data.period.unit)),
           Switch(
             $inputs.data.xaxis,
             'auto', $inputs.data.source,
