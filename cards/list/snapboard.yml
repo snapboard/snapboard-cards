@@ -21,7 +21,7 @@ inputs:
     - prop: source
       type: formula
       title: Source
-      caption: 'A reference, object or list of data'
+      caption: 'A reference, object or list of data to display in card'
       required: true
   tabs:
     data:
