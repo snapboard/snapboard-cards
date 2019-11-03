@@ -17,7 +17,7 @@ inputs:
           link: If($inputs.data.link.toggled, ContextValue($inputs.data.link.value))
         })
       )
-    source: null
+    source: true
   fields:
     - prop: source
       type: formula
