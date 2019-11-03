@@ -72,7 +72,7 @@ inputs:
     - title: Chart Type
       key: type
       prop: type
-      default: bar
+      defaultValue: bar
       options:
         selectOptions:
           - label: Bar
@@ -98,7 +98,7 @@ inputs:
         xaxis:
           type: select
           title: X-Axis
-          default: auto
+          defaultValue: auto
           options:
             selectOptions:
               - label: Auto
@@ -127,12 +127,12 @@ inputs:
                       title: Count
                       type: text
                       placeholder: No.
-                      default: '14'
+                      defaultValue: '14'
                     unit:
                       title: Period
                       type: select
                       placeholder: Select a time period...
-                      default: day
+                      defaultValue: day
                       options:
                         selectOptions:
                           - label: Minutes
@@ -163,7 +163,7 @@ inputs:
                   caption: >-
                     When we group values in `Source` by date, how should we
                     combine their value.
-                  default: count
+                  defaultValue: count
                   options:
                     selectOptions:
                       - label: Count
