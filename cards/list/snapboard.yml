@@ -16,6 +16,7 @@ inputs:
           link: ContextValue($inputs.data.link)
         })
       )
+    source: null
   fields:
     - prop: source
       type: formula
@@ -47,8 +48,7 @@ inputs:
           title: Link
           caption: >-
             A field in `Source` or formula to use as the link - link will be
-            added 
-                          to title, image and desc area.
+            added to title, image and desc area.
           toggle: true
           defaultValue: link
         - prop: counter
