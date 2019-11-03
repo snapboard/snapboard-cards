@@ -1,5 +1,5 @@
 id: gCkcGI7qqAsIV4XdTiY1
-version: 0.0.9
+version: 0.0.10
 auths: {}
 name: List
 lastSave: 1571481497374
@@ -20,7 +20,7 @@ inputs:
     source:
       type: formula
       title: Source
-      caption: A reference, object or list of data
+      caption: 'A reference, object or list of data'
       required: true
     tabs:
       data:
@@ -45,14 +45,18 @@ inputs:
           link:
             type: text
             title: Link
-            caption: "A field in `Source` or formula to use as the link - link will be
-              added \n              to title, image and desc area."
+            caption: >-
+              A field in `Source` or formula to use as the link - link will be
+              added 
+                            to title, image and desc area.
             toggle: true
             defaultValue: link
           counter:
             type: text
             title: Counter
-            caption: A field in `Source` or formula to use as count displayed on the card
+            caption: >-
+              A field in `Source` or formula to use as count displayed on the
+              card
             toggle: true
             defaultValue: link
       options:
@@ -61,9 +65,9 @@ inputs:
           compact:
             type: bool
             title: Compact
-            caption: Minimize the size of each list item, so more are visible at the same
-              time.
-
+            caption: >-
+              Minimize the size of each list item, so more are visible at the
+              same time.
 hasData: false
 safety: true
 public: true
